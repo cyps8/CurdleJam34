@@ -1,0 +1,17 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://6cgu0y46o3ww"]
+
+[ext_resource type="Texture2D" uid="uid://oyuy2r7flhx8" path="res://Assets/Art/UI/panel.png" id="1_abbjb"]
+[ext_resource type="FontFile" uid="uid://dytqykwcre0ys" path="res://Assets/Font/Space Game no outline.ttf" id="2_an33n"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_frwr5"]
+texture = ExtResource("1_abbjb")
+texture_margin_left = 13.0
+texture_margin_top = 13.0
+texture_margin_right = 13.0
+texture_margin_bottom = 9.0
+
+[resource]
+default_font = ExtResource("2_an33n")
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 4
+Panel/styles/panel = SubResource("StyleBoxTexture_frwr5")
