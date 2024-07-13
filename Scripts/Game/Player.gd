@@ -15,18 +15,18 @@ var smoke: CPUParticles2D
 var fire: CPUParticles2D
 
 func _ready():
-	playerSprite = $PlayerSprite
+	playerSprite = $PlayerSprite 
 	smoke = $PlayerSprite/Smoke
 	fire = $PlayerSprite/Fire
 	playerSprite.scale = Vector2.ONE
 
-	for _i in range(10):
+	for _i in range(100):
 		var predPoint = predPointIns.instantiate()
 		predPoint.position = Vector2.ZERO
 		predPoints.append(predPoint)
 		playerSprite.add_child(predPoint)
 		predPoint.z_index = -1
-		predPoint.modulate = Color(1, 1, 1, (10.0 - _i) / 10.0)
+		predPoint.modulate = Color(1, 1, 1, (100.0 - _i) / 100.0)
 
 	remove_child(playerSprite)
 	SubView.ins.add_child(playerSprite)

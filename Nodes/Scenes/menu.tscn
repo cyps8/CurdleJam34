@@ -1,0 +1,79 @@
+[gd_scene load_steps=5 format=3 uid="uid://bw2dcgvu2ljkj"]
+
+[ext_resource type="Script" path="res://Scripts/Menus/MainMenu.gd" id="1_2n7kk"]
+[ext_resource type="Theme" uid="uid://6cgu0y46o3ww" path="res://Resources/Themes/HUD.tres" id="1_246g8"]
+[ext_resource type="Theme" uid="uid://d1cfjy5fdtqnu" path="res://Resources/Themes/RightButton.tres" id="2_xtd00"]
+[ext_resource type="Material" uid="uid://ccy71nrc7dqc4" path="res://Resources/Materials/LabelShader.tres" id="3_w2gxf"]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_2n7kk")
+
+[node name="c" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_246g8")
+
+[node name="StartButton" type="Button" parent="c"]
+layout_mode = 0
+offset_left = -128.0
+offset_top = 288.0
+offset_right = -26.0
+offset_bottom = 314.0
+scale = Vector2(4, 4)
+theme = ExtResource("2_xtd00")
+
+[node name="Label" type="Label" parent="c/StartButton"]
+material = ExtResource("3_w2gxf")
+layout_mode = 0
+offset_left = 64.0
+offset_top = 8.0
+offset_right = 104.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 8
+text = "START"
+
+[node name="OptionsButton" type="Button" parent="c"]
+layout_mode = 0
+offset_left = -152.0
+offset_top = 400.0
+offset_right = -50.0
+offset_bottom = 426.0
+scale = Vector2(4, 4)
+theme = ExtResource("2_xtd00")
+
+[node name="Label" type="Label" parent="c/OptionsButton"]
+material = ExtResource("3_w2gxf")
+layout_mode = 0
+offset_left = 54.0
+offset_top = 8.0
+offset_right = 94.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 8
+text = "OPTIONS"
+
+[node name="ExitButton" type="Button" parent="c"]
+layout_mode = 0
+offset_left = -176.0
+offset_top = 512.0
+offset_right = -74.0
+offset_bottom = 538.0
+scale = Vector2(4, 4)
+theme = ExtResource("2_xtd00")
+
+[node name="Label" type="Label" parent="c/ExitButton"]
+material = ExtResource("3_w2gxf")
+layout_mode = 0
+offset_left = 68.0
+offset_top = 8.0
+offset_right = 108.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 8
+text = "EXIT"
+
+[connection signal="pressed" from="c/StartButton" to="." method="StartPressed"]
+[connection signal="pressed" from="c/OptionsButton" to="." method="OptionsPressed"]
+[connection signal="pressed" from="c/ExitButton" to="." method="ExitPressed"]

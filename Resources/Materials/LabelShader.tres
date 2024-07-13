@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ccy71nrc7dqc4"]
+
+[ext_resource type="Shader" path="res://Scripts/Shaders/Font.gdshader" id="1_nkgw2"]
+
+[resource]
+shader = ExtResource("1_nkgw2")
+shader_parameter/color = Color(0, 0, 0, 1)

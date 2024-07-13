@@ -99,7 +99,7 @@ colors = PackedColorArray(0.85098, 0.341176, 0.388235, 1, 0.415686, 0.745098, 0.
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sd2tb"]
 shader = ExtResource("2_i51pg")
-shader_parameter/radius = 16.0
+shader_parameter/radius = 48.0
 shader_parameter/color = Color(0.6, 0.898039, 0.313726, 1)
 
 [sub_resource type="Gradient" id="Gradient_srx00"]
@@ -109,8 +109,8 @@ colors = PackedColorArray(1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_n7u10"]
 gradient = SubResource("Gradient_srx00")
-width = 32
-height = 32
+width = 96
+height = 96
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_rirkk"]
 viewport_path = NodePath("SubView")
@@ -202,7 +202,6 @@ updateRotation = false
 scaled = 0.25
 
 [node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(-46, 38)
 motion_mode = 1
 script = ExtResource("3_e6jg0")
 predPointIns = ExtResource("9_b7lgb")
@@ -272,8 +271,7 @@ script = ExtResource("7_xdvmi")
 
 [node name="Objective" type="Sprite2D" parent="SubView"]
 material = SubResource("ShaderMaterial_sd2tb")
-position = Vector2(-119.015, 131.602)
-scale = Vector2(4, 4)
+position = Vector2(-60, 64)
 texture = SubResource("GradientTexture2D_n7u10")
 
 [node name="BackgroundMan" type="Node2D" parent="SubView" node_paths=PackedStringArray("cam")]

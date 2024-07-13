@@ -1,0 +1,108 @@
+[gd_scene load_steps=9 format=3 uid="uid://rfwb7grbpfi8"]
+
+[ext_resource type="Script" path="res://Scripts/Root.gd" id="1_wiumh"]
+[ext_resource type="Theme" uid="uid://6cgu0y46o3ww" path="res://Resources/Themes/HUD.tres" id="2_2rssi"]
+[ext_resource type="Script" path="res://Scripts/Menus/Options.gd" id="2_1384m"]
+[ext_resource type="PackedScene" uid="uid://2lifl5c0bvhp" path="res://Nodes/Scenes/game.tscn" id="2_d784k"]
+[ext_resource type="PackedScene" uid="uid://bw2dcgvu2ljkj" path="res://Nodes/Scenes/menu.tscn" id="3_xdpoc"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/Font.gdshader" id="4_b66jo"]
+[ext_resource type="Material" uid="uid://ccy71nrc7dqc4" path="res://Resources/Materials/LabelShader.tres" id="7_2ajh1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_moxx4"]
+shader = ExtResource("4_b66jo")
+shader_parameter/color = null
+
+[node name="Root" type="Node"]
+script = ExtResource("1_wiumh")
+gameScene = ExtResource("2_d784k")
+menuScene = ExtResource("3_xdpoc")
+
+[node name="OptionsMenu" type="CanvasLayer" parent="."]
+layer = 10
+script = ExtResource("2_1384m")
+
+[node name="c" type="Control" parent="OptionsMenu"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_2rssi")
+
+[node name="Shade" type="ColorRect" parent="OptionsMenu/c"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.34902)
+
+[node name="Panel" type="Panel" parent="OptionsMenu/c"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -320.0
+offset_right = -160.0
+offset_bottom = -176.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+
+[node name="BackButton" type="Button" parent="OptionsMenu/c/Panel"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 122.0
+offset_right = 62.0
+offset_bottom = 147.0
+
+[node name="Label" type="Label" parent="OptionsMenu/c/Panel/BackButton"]
+material = SubResource("ShaderMaterial_moxx4")
+layout_mode = 0
+offset_left = 12.0
+offset_top = 4.0
+offset_right = 52.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 8
+text = "Back"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LoadingScreen" type="CanvasLayer" parent="."]
+layer = 100
+visible = false
+
+[node name="c" type="Control" parent="LoadingScreen"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_2rssi")
+
+[node name="Black" type="ColorRect" parent="LoadingScreen/c"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="LoadingScreen/c/Black"]
+material = ExtResource("7_2ajh1")
+layout_mode = 0
+offset_left = 16.0
+offset_top = 696.0
+offset_right = 114.0
+offset_bottom = 719.0
+scale = Vector2(4, 4)
+text = "LOAADING..."
+
+[connection signal="pressed" from="OptionsMenu/c/Panel/BackButton" to="OptionsMenu" method="BackPressed"]
