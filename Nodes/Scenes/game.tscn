@@ -1,8 +1,9 @@
-[gd_scene load_steps=38 format=3 uid="uid://2lifl5c0bvhp"]
+[gd_scene load_steps=43 format=3 uid="uid://2lifl5c0bvhp"]
 
 [ext_resource type="Script" path="res://Scripts/Game/GravityMan.gd" id="1_3uasn"]
 [ext_resource type="Script" path="res://Scripts/Game/Gravity.gd" id="1_vsxqb"]
 [ext_resource type="Script" path="res://Scripts/Game/Planet.gd" id="2_63fin"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/Objective.gdshader" id="2_i51pg"]
 [ext_resource type="Script" path="res://Scripts/Game/ScalableRT2D.gd" id="2_v7mfs"]
 [ext_resource type="Script" path="res://Scripts/Game/Player.gd" id="3_e6jg0"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/dashedcircle.gdshader" id="5_x1xlu"]
@@ -60,17 +61,21 @@ normal_texture = ExtResource("11_lni28")
 
 [sub_resource type="Gradient" id="Gradient_u4hxt"]
 offsets = PackedFloat32Array(0.105634, 0.647887, 1)
-colors = PackedColorArray(0.489622, 0.489622, 0.489622, 1, 0, 0, 0, 0.439216, 0, 0, 0, 0)
+colors = PackedColorArray(0.238993, 0.26886, 0.243487, 1, 0, 0, 0, 0.439216, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_k7uod"]
 gradient = SubResource("Gradient_u4hxt")
-width = 8
-height = 8
+width = 12
+height = 12
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="Curve" id="Curve_sn2ug"]
+_data = [Vector2(0, 0.519597), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.564514, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="Gradient" id="Gradient_ps3ww"]
-offsets = PackedFloat32Array(0.746667, 1)
+offsets = PackedFloat32Array(0.719626, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="Gradient" id="Gradient_p568u"]
@@ -90,6 +95,21 @@ point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_03ewk"]
 colors = PackedColorArray(0.85098, 0.341176, 0.388235, 1, 0.415686, 0.745098, 0.188235, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sd2tb"]
+shader = ExtResource("2_i51pg")
+shader_parameter/radius = 16.0
+shader_parameter/color = Color(0.6, 0.898039, 0.313726, 1)
+
+[sub_resource type="Gradient" id="Gradient_srx00"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n7u10"]
+gradient = SubResource("Gradient_srx00")
+width = 32
+height = 32
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_rirkk"]
 viewport_path = NodePath("SubView")
@@ -203,8 +223,8 @@ texture = SubResource("CanvasTexture_18ony")
 z_index = -1
 position = Vector2(0, 8)
 emitting = false
-amount = 20
-lifetime = 3.0
+amount = 25
+lifetime = 2.0
 texture = SubResource("GradientTexture2D_k7uod")
 direction = Vector2(0, 1)
 gravity = Vector2(0, 0)
@@ -212,6 +232,7 @@ initial_velocity_min = 10.0
 initial_velocity_max = 10.0
 linear_accel_min = -5.0
 linear_accel_max = -5.0
+scale_amount_curve = SubResource("Curve_sn2ug")
 color_ramp = SubResource("Gradient_ps3ww")
 
 [node name="Fire" type="CPUParticles2D" parent="Player/PlayerSprite"]
@@ -237,10 +258,45 @@ size = Vector2i(256, 192)
 render_target_update_mode = 4
 script = ExtResource("7_xdvmi")
 
+[node name="Objective" type="Sprite2D" parent="SubView"]
+material = SubResource("ShaderMaterial_sd2tb")
+position = Vector2(-119.015, 131.602)
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_n7u10")
+
 [node name="BackgroundMan" type="Node2D" parent="SubView" node_paths=PackedStringArray("cam")]
 script = ExtResource("11_ywbsh")
 cam = NodePath("../Cam")
 starIns = ExtResource("15_qh8a8")
+starColor = Color(1, 1, 1, 0.792157)
+
+[node name="BackgroundMan2" type="Node2D" parent="SubView" node_paths=PackedStringArray("cam")]
+script = ExtResource("11_ywbsh")
+cam = NodePath("../Cam")
+starIns = ExtResource("15_qh8a8")
+parMult = 3.0
+starColor = Color(1, 1, 1, 0.662745)
+
+[node name="BackgroundMan3" type="Node2D" parent="SubView" node_paths=PackedStringArray("cam")]
+script = ExtResource("11_ywbsh")
+cam = NodePath("../Cam")
+starIns = ExtResource("15_qh8a8")
+parMult = 4.0
+starColor = Color(1, 1, 1, 0.47451)
+
+[node name="BackgroundMan4" type="Node2D" parent="SubView" node_paths=PackedStringArray("cam")]
+script = ExtResource("11_ywbsh")
+cam = NodePath("../Cam")
+starIns = ExtResource("15_qh8a8")
+parMult = 5.0
+starColor = Color(1, 1, 1, 0.407843)
+
+[node name="BackgroundMan5" type="Node2D" parent="SubView" node_paths=PackedStringArray("cam")]
+script = ExtResource("11_ywbsh")
+cam = NodePath("../Cam")
+starIns = ExtResource("15_qh8a8")
+parMult = 6.0
+starColor = Color(1, 1, 1, 0.392157)
 
 [node name="Cam" type="Camera2D" parent="SubView"]
 position = Vector2(-46, 38)
@@ -280,6 +336,17 @@ grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("11_3ogp3")
 
+[node name="Speed" type="Label" parent="Game/HUD" groups=["Velocity"]]
+material = SubResource("ShaderMaterial_40miq")
+layout_mode = 0
+offset_left = 30.0
+offset_top = 707.0
+offset_right = 84.0
+offset_bottom = 715.0
+scale = Vector2(4, 4)
+theme_override_font_sizes/font_size = 8
+text = "VELOCITY: 0.0m/s"
+
 [node name="Panel" type="Panel" parent="Game/HUD"]
 visible = false
 layout_mode = 0
@@ -288,14 +355,3 @@ offset_top = 283.0
 offset_right = 456.0
 offset_bottom = 365.0
 scale = Vector2(4, 4)
-
-[node name="Label" type="Label" parent="Game/HUD/Panel"]
-material = SubResource("ShaderMaterial_40miq")
-layout_mode = 0
-offset_left = 13.75
-offset_top = 12.5
-offset_right = 62.75
-offset_bottom = 47.5
-theme_override_font_sizes/font_size = 8
-text = "Hello this is
-a test"

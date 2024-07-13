@@ -44,9 +44,11 @@ func _physics_process(_dt):
 	if input.y < 0:
 		smoke.emitting = true
 		fire.emitting = true
+		playerSprite.scale = Vector2(0.92, 1.08)
 	else:
 		smoke.emitting = false
 		fire.emitting = false
+		playerSprite.scale = Vector2(1.0, 1.0)
 
 	if velocity.length() > 0 && velocity.dot(Vector2(0, input.y).rotated(rotation)) < 0:
 		velocity *= 0.99
@@ -60,6 +62,8 @@ func _physics_process(_dt):
 	Prediction()
 
 	move_and_slide()
+
+	get_tree().get_first_node_in_group("Velocity").text = "Velocity: " + str(snapped(velocity.length(), 0.1)) + "m/s"
 
 func GetGravity(atPos: Vector2) -> Vector2:
 	var compound: Vector2 = Vector2.ZERO

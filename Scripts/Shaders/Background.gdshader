@@ -1,9 +1,11 @@
 shader_type canvas_item;
 
+uniform vec4 starColor: source_color;
+
 void fragment() {
-	if (COLOR.r > 0.9)
+	if (COLOR.r > 0.95)
 	{
-		COLOR = vec4(1,1,1,1);
+		COLOR = starColor;
 	}
 	else
 	{
