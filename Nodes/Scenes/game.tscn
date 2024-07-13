@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://2lifl5c0bvhp"]
+[gd_scene load_steps=46 format=3 uid="uid://2lifl5c0bvhp"]
 
 [ext_resource type="Script" path="res://Scripts/Game/GravityMan.gd" id="1_3uasn"]
 [ext_resource type="Script" path="res://Scripts/Game/Gravity.gd" id="1_vsxqb"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://Scripts/Game/Background.gd" id="11_ywbsh"]
 [ext_resource type="PackedScene" uid="uid://vmafb4yd374y" path="res://Nodes/stars.tscn" id="15_qh8a8"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Font.gdshader" id="16_8xe46"]
+[ext_resource type="Texture2D" uid="uid://dcdw2gjmyvgx1" path="res://Assets/Art/UI/MapIcons/Player.png" id="20_aryt4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dods4"]
 radius = 49.2544
@@ -117,6 +118,17 @@ viewport_path = NodePath("SubView")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q4u7p"]
 shader = ExtResource("16_8xe46")
 shader_parameter/color = Color(0.133333, 0.12549, 0.203922, 1)
+
+[sub_resource type="Gradient" id="Gradient_7taar"]
+offsets = PackedFloat32Array(0, 0.615385, 0.618462)
+colors = PackedColorArray(0, 0, 0, 1, 0.0962047, 0.0962048, 0.0962047, 1, 0.0978099, 0.0978099, 0.0978099, 0.125)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_v15jo"]
+gradient = SubResource("Gradient_7taar")
+width = 58
+height = 58
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_40miq"]
 shader = ExtResource("16_8xe46")
@@ -323,7 +335,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("11_yrm1c")
 
-[node name="TextureRect" type="TextureRect" parent="Game/HUD"]
+[node name="Map" type="TextureRect" parent="Game/HUD"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -335,6 +347,21 @@ offset_top = -232.0
 grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("11_3ogp3")
+
+[node name="Back" type="TextureRect" parent="Game/HUD/Map"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 74.0
+offset_bottom = 74.0
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_v15jo")
+
+[node name="Sprite2D" type="Sprite2D" parent="Game/HUD/Map"]
+position = Vector2(132, 132)
+scale = Vector2(4, 4)
+texture = ExtResource("20_aryt4")
 
 [node name="Speed" type="Label" parent="Game/HUD" groups=["Velocity"]]
 material = SubResource("ShaderMaterial_40miq")
