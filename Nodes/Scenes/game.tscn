@@ -1,330 +1,36 @@
-[gd_scene load_steps=46 format=3 uid="uid://2lifl5c0bvhp"]
+[gd_scene load_steps=12 format=3 uid="uid://c3brmvfq2chmc"]
 
-[ext_resource type="Script" path="res://Scripts/Game/GravityMan.gd" id="1_3uasn"]
-[ext_resource type="Script" path="res://Scripts/Game/Gravity.gd" id="1_vsxqb"]
-[ext_resource type="Script" path="res://Scripts/Game/Planet.gd" id="2_63fin"]
-[ext_resource type="Shader" path="res://Scripts/Shaders/Objective.gdshader" id="2_i51pg"]
-[ext_resource type="Script" path="res://Scripts/Game/ScalableRT2D.gd" id="2_v7mfs"]
-[ext_resource type="Script" path="res://Scripts/Game/Player.gd" id="3_e6jg0"]
-[ext_resource type="Shader" path="res://Scripts/Shaders/dashedcircle.gdshader" id="5_x1xlu"]
-[ext_resource type="Script" path="res://Scripts/Game/GravityOutline.gd" id="6_0ffas"]
-[ext_resource type="Shader" path="res://Scripts/Shaders/Rot.gdshader" id="6_0747m"]
-[ext_resource type="Texture2D" uid="uid://byv2os6irvt3r" path="res://Assets/Art/Objects/light.png" id="6_isp01"]
-[ext_resource type="Texture2D" uid="uid://dt1a7xl8p24yo" path="res://Assets/Art/Objects/ship.png" id="7_oq4j4"]
-[ext_resource type="Script" path="res://Scripts/Game/SubView.gd" id="7_xdvmi"]
-[ext_resource type="PackedScene" uid="uid://ke5pkvavmqwc" path="res://Nodes/prediction_point.tscn" id="9_b7lgb"]
-[ext_resource type="Texture2D" uid="uid://bm0s4tupn6dm2" path="res://Assets/Art/UI/minimap.png" id="11_3ogp3"]
-[ext_resource type="Texture2D" uid="uid://l6qeth4dc3ri" path="res://Assets/Art/Objects/uvship.png" id="11_lni28"]
+[ext_resource type="Script" path="res://Scripts/Game/GameManager.gd" id="1_eklrh"]
+[ext_resource type="PackedScene" uid="uid://2lifl5c0bvhp" path="res://Nodes/Scenes/world.tscn" id="2_eode3"]
+[ext_resource type="Script" path="res://Scripts/Menus/Pause.gd" id="3_xychr"]
+[ext_resource type="Script" path="res://Scripts/Menus/MenuButton.gd" id="5_narkc"]
+[ext_resource type="Material" uid="uid://ccy71nrc7dqc4" path="res://Resources/Materials/LabelShader.tres" id="6_bo2dc"]
+[ext_resource type="Script" path="res://Scripts/Menus/DialogueWindow.gd" id="7_j4v7v"]
+[ext_resource type="Theme" uid="uid://d1cfjy5fdtqnu" path="res://Resources/Themes/RightButton.tres" id="8_hd31q"]
+[ext_resource type="Texture2D" uid="uid://dpqc7yd7vb0s" path="res://Assets/Art/UI/portraits/crocodile.png" id="8_pjdl5"]
 [ext_resource type="Theme" uid="uid://6cgu0y46o3ww" path="res://Resources/Themes/HUD.tres" id="11_yrm1c"]
-[ext_resource type="Script" path="res://Scripts/Game/Background.gd" id="11_ywbsh"]
-[ext_resource type="PackedScene" uid="uid://vmafb4yd374y" path="res://Nodes/stars.tscn" id="15_qh8a8"]
-[ext_resource type="Shader" path="res://Scripts/Shaders/Font.gdshader" id="16_8xe46"]
-[ext_resource type="Texture2D" uid="uid://dcdw2gjmyvgx1" path="res://Assets/Art/UI/MapIcons/Player.png" id="20_aryt4"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_dods4"]
-radius = 49.2544
+[sub_resource type="Gradient" id="Gradient_bmdad"]
+colors = PackedColorArray(0, 0, 0, 1, 0.133333, 0.12549, 0.203922, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hjxc6"]
-shader = ExtResource("5_x1xlu")
-shader_parameter/radius = 100.0
-shader_parameter/line_thickness = 0.9
-
-[sub_resource type="Gradient" id="Gradient_33r8i"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_u4h5j"]
-gradient = SubResource("Gradient_33r8i")
-width = 200
-height = 200
-
-[sub_resource type="Gradient" id="Gradient_k10dm"]
-offsets = PackedFloat32Array(0, 0.512987, 0.688312)
-colors = PackedColorArray(1, 1, 0.780392, 1, 1, 1, 0, 1, 1, 1, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_2xoh2"]
-gradient = SubResource("Gradient_k10dm")
-width = 32
-height = 32
-fill = 1
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0ipdo"]
+gradient = SubResource("Gradient_bmdad")
+width = 40
+height = 40
+fill = 2
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tlnsv"]
-radius = 13.4536
+[node name="Game" type="Node"]
+script = ExtResource("1_eklrh")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_snkkw"]
-shader = ExtResource("6_0747m")
+[node name="World" parent="." instance=ExtResource("2_eode3")]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_18ony"]
-diffuse_texture = ExtResource("7_oq4j4")
-normal_texture = ExtResource("11_lni28")
+[node name="Pause" type="CanvasLayer" parent="."]
+layer = 8
+visible = false
+script = ExtResource("3_xychr")
 
-[sub_resource type="Gradient" id="Gradient_u4hxt"]
-offsets = PackedFloat32Array(0.105634, 0.647887, 1)
-colors = PackedColorArray(0.238993, 0.26886, 0.243487, 1, 0, 0, 0, 0.439216, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_k7uod"]
-gradient = SubResource("Gradient_u4hxt")
-width = 12
-height = 12
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="Curve" id="Curve_sn2ug"]
-_data = [Vector2(0, 0.519597), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.564514, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Gradient" id="Gradient_ps3ww"]
-offsets = PackedFloat32Array(0.719626, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="Gradient" id="Gradient_p568u"]
-offsets = PackedFloat32Array(0.401408, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_f3ld4"]
-gradient = SubResource("Gradient_p568u")
-width = 4
-height = 4
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="Curve" id="Curve_2prsw"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.07379, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Gradient" id="Gradient_03ewk"]
-colors = PackedColorArray(0.85098, 0.341176, 0.388235, 1, 0.415686, 0.745098, 0.188235, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sd2tb"]
-shader = ExtResource("2_i51pg")
-shader_parameter/radius = 48.0
-shader_parameter/color = Color(0.6, 0.898039, 0.313726, 1)
-
-[sub_resource type="Gradient" id="Gradient_srx00"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_n7u10"]
-gradient = SubResource("Gradient_srx00")
-width = 96
-height = 96
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_rirkk"]
-viewport_path = NodePath("SubView")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_q4u7p"]
-shader = ExtResource("16_8xe46")
-shader_parameter/color = Color(0.133333, 0.12549, 0.203922, 1)
-
-[sub_resource type="Gradient" id="Gradient_7taar"]
-offsets = PackedFloat32Array(0, 0.615385, 0.618462)
-colors = PackedColorArray(0, 0, 0, 1, 0.0962047, 0.0962048, 0.0962047, 1, 0.0978099, 0.0978099, 0.0978099, 0.125)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_v15jo"]
-gradient = SubResource("Gradient_7taar")
-width = 58
-height = 58
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_40miq"]
-shader = ExtResource("16_8xe46")
-shader_parameter/color = Color(0.133333, 0.12549, 0.203922, 1)
-
-[node name="Game" type="Node2D"]
-
-[node name="GravityMan" type="Node2D" parent="."]
-script = ExtResource("1_3uasn")
-
-[node name="Planet" type="Area2D" parent="."]
-position = Vector2(634, -360)
-script = ExtResource("2_63fin")
-
-[node name="Death" type="CollisionShape2D" parent="Planet"]
-shape = SubResource("CircleShape2D_dods4")
-debug_color = Color(0.976471, 0, 0.407843, 0.419608)
-
-[node name="Gravity" type="Node2D" parent="Planet"]
-script = ExtResource("1_vsxqb")
-
-[node name="GravityOutline" type="Sprite2D" parent="Planet"]
-material = SubResource("ShaderMaterial_hjxc6")
-scale = Vector2(4, 4)
-texture = SubResource("GradientTexture2D_u4h5j")
-script = ExtResource("6_0ffas")
-
-[node name="Sprite" type="Sprite2D" parent="Planet"]
-scale = Vector2(4, 4)
-texture = SubResource("GradientTexture2D_2xoh2")
-
-[node name="Light" type="PointLight2D" parent="Planet/Sprite"]
-color = Color(1, 1, 0.823529, 1)
-texture = ExtResource("6_isp01")
-
-[node name="Remote" type="Node2D" parent="Planet"]
-scale = Vector2(1, 0.999985)
-script = ExtResource("2_v7mfs")
-updateRotation = false
-scaled = 0.25
-
-[node name="Planet2" type="Area2D" parent="."]
-position = Vector2(-439, -469)
-script = ExtResource("2_63fin")
-
-[node name="Death" type="CollisionShape2D" parent="Planet2"]
-shape = SubResource("CircleShape2D_dods4")
-debug_color = Color(0.976471, 0, 0.407843, 0.419608)
-
-[node name="Gravity" type="Node2D" parent="Planet2"]
-script = ExtResource("1_vsxqb")
-
-[node name="GravityOutline" type="Sprite2D" parent="Planet2"]
-material = SubResource("ShaderMaterial_hjxc6")
-scale = Vector2(4, 4)
-texture = SubResource("GradientTexture2D_u4h5j")
-script = ExtResource("6_0ffas")
-
-[node name="Sprite" type="Sprite2D" parent="Planet2"]
-scale = Vector2(4, 4)
-texture = SubResource("GradientTexture2D_2xoh2")
-
-[node name="Light" type="PointLight2D" parent="Planet2/Sprite"]
-color = Color(1, 1, 0.823529, 1)
-texture = ExtResource("6_isp01")
-
-[node name="Remote" type="Node2D" parent="Planet2"]
-scale = Vector2(1, 0.999985)
-script = ExtResource("2_v7mfs")
-updateRotation = false
-scaled = 0.25
-
-[node name="Player" type="CharacterBody2D" parent="."]
-motion_mode = 1
-script = ExtResource("3_e6jg0")
-predPointIns = ExtResource("9_b7lgb")
-
-[node name="Shape" type="CollisionShape2D" parent="Player"]
-shape = SubResource("CircleShape2D_tlnsv")
-debug_color = Color(0.960784, 0, 0.517647, 0.419608)
-
-[node name="Cam" type="Camera2D" parent="Player"]
-ignore_rotation = false
-rotation_smoothing_enabled = true
-
-[node name="RemoteCam" type="Node2D" parent="Player/Cam"]
-script = ExtResource("2_v7mfs")
-remotePaths = Array[NodePath]([NodePath("../../../SubView/Cam")])
-scaled = 0.25
-
-[node name="RemotePlayer" type="Node2D" parent="Player"]
-script = ExtResource("2_v7mfs")
-scaled = 0.25
-
-[node name="PlayerSprite" type="Sprite2D" parent="Player"]
-z_index = 1
-texture_filter = 1
-material = SubResource("ShaderMaterial_snkkw")
-scale = Vector2(4, 4)
-texture = SubResource("CanvasTexture_18ony")
-
-[node name="Smoke" type="CPUParticles2D" parent="Player/PlayerSprite"]
-z_index = -1
-position = Vector2(0, 8)
-emitting = false
-amount = 25
-lifetime = 2.0
-texture = SubResource("GradientTexture2D_k7uod")
-direction = Vector2(0, 1)
-gravity = Vector2(0, 0)
-initial_velocity_min = 10.0
-initial_velocity_max = 10.0
-linear_accel_min = -5.0
-linear_accel_max = -5.0
-scale_amount_curve = SubResource("Curve_sn2ug")
-color_ramp = SubResource("Gradient_ps3ww")
-
-[node name="Fire" type="CPUParticles2D" parent="Player/PlayerSprite"]
-position = Vector2(0, 6)
-emitting = false
-lifetime = 0.5
-local_coords = true
-draw_order = 1
-texture = SubResource("GradientTexture2D_f3ld4")
-direction = Vector2(0, 1)
-gravity = Vector2(0, 0)
-initial_velocity_min = 10.0
-initial_velocity_max = 10.0
-scale_amount_curve = SubResource("Curve_2prsw")
-color_ramp = SubResource("Gradient_03ewk")
-
-[node name="SubView" type="SubViewport" parent="."]
-disable_3d = true
-transparent_bg = true
-snap_2d_vertices_to_pixel = true
-canvas_item_default_texture_filter = 0
-size = Vector2i(256, 192)
-render_target_update_mode = 4
-script = ExtResource("7_xdvmi")
-
-[node name="Objective" type="Sprite2D" parent="SubView"]
-material = SubResource("ShaderMaterial_sd2tb")
-position = Vector2(-60, 64)
-texture = SubResource("GradientTexture2D_n7u10")
-
-[node name="BackgroundMan" type="Node2D" parent="SubView" node_paths=PackedStringArray("cam")]
-script = ExtResource("11_ywbsh")
-cam = NodePath("../Cam")
-starIns = ExtResource("15_qh8a8")
-starColor = Color(1, 1, 1, 0.792157)
-
-[node name="BackgroundMan2" type="Node2D" parent="SubView" node_paths=PackedStringArray("cam")]
-script = ExtResource("11_ywbsh")
-cam = NodePath("../Cam")
-starIns = ExtResource("15_qh8a8")
-parMult = 3.0
-starColor = Color(1, 1, 1, 0.662745)
-
-[node name="BackgroundMan3" type="Node2D" parent="SubView" node_paths=PackedStringArray("cam")]
-script = ExtResource("11_ywbsh")
-cam = NodePath("../Cam")
-starIns = ExtResource("15_qh8a8")
-parMult = 4.0
-starColor = Color(1, 1, 1, 0.47451)
-
-[node name="BackgroundMan4" type="Node2D" parent="SubView" node_paths=PackedStringArray("cam")]
-script = ExtResource("11_ywbsh")
-cam = NodePath("../Cam")
-starIns = ExtResource("15_qh8a8")
-parMult = 5.0
-starColor = Color(1, 1, 1, 0.407843)
-
-[node name="BackgroundMan5" type="Node2D" parent="SubView" node_paths=PackedStringArray("cam")]
-script = ExtResource("11_ywbsh")
-cam = NodePath("../Cam")
-starIns = ExtResource("15_qh8a8")
-parMult = 6.0
-starColor = Color(1, 1, 1, 0.392157)
-
-[node name="Cam" type="Camera2D" parent="SubView"]
-position = Vector2(-46, 38)
-ignore_rotation = false
-rotation_smoothing_enabled = true
-
-[node name="Game" type="CanvasLayer" parent="."]
-
-[node name="SubView" type="TextureRect" parent="Game"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("ViewportTexture_rirkk")
-
-[node name="HUD" type="Control" parent="Game"]
-material = SubResource("ShaderMaterial_q4u7p")
+[node name="c" type="Control" parent="Pause"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -333,50 +39,255 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("11_yrm1c")
 
-[node name="Map" type="TextureRect" parent="Game/HUD"]
+[node name="Shade" type="ColorRect" parent="Pause/c"]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -232.0
-offset_top = -232.0
-grow_horizontal = 0
-grow_vertical = 0
-texture = ExtResource("11_3ogp3")
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.34902)
 
-[node name="Back" type="TextureRect" parent="Game/HUD/Map"]
-show_behind_parent = true
+[node name="Panel" type="Panel" parent="Pause/c"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 112.0
+offset_top = -308.0
+offset_right = 272.0
+offset_bottom = -164.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+
+[node name="BackButton" type="Button" parent="Pause/c/Panel"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 122.0
+offset_right = 62.0
+offset_bottom = 147.0
+script = ExtResource("5_narkc")
+backButton = true
+
+[node name="Label" type="Label" parent="Pause/c/Panel/BackButton"]
+material = ExtResource("6_bo2dc")
+layout_mode = 0
+offset_left = 12.0
+offset_top = 4.0
+offset_right = 52.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 8
+text = "Resume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuButton" type="Button" parent="Pause/c/Panel"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 33.0
+offset_right = 116.0
+offset_bottom = 58.0
+script = ExtResource("5_narkc")
+focusMove = Vector2(-6, 0)
+
+[node name="Label" type="Label" parent="Pause/c/Panel/MenuButton"]
+material = ExtResource("6_bo2dc")
+layout_mode = 0
+offset_left = 14.0
+offset_top = 4.0
+offset_right = 58.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 8
+text = "Main Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OptionsButton" type="Button" parent="Pause/c/Panel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 61.0
+offset_right = 122.0
+offset_bottom = 86.0
+script = ExtResource("5_narkc")
+focusMove = Vector2(-6, 0)
+
+[node name="Label" type="Label" parent="Pause/c/Panel/OptionsButton"]
+material = ExtResource("6_bo2dc")
+layout_mode = 0
+offset_left = 10.0
+offset_top = 4.0
+offset_right = 50.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 8
+text = "Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RestartButton" type="Button" parent="Pause/c/Panel"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 89.0
+offset_right = 128.0
+offset_bottom = 114.0
+script = ExtResource("5_narkc")
+focusMove = Vector2(-6, 0)
+
+[node name="Label" type="Label" parent="Pause/c/Panel/RestartButton"]
+material = ExtResource("6_bo2dc")
+layout_mode = 0
+offset_left = 12.0
+offset_top = 4.0
+offset_right = 52.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 8
+text = "Restart"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Pause" type="Label" parent="Pause/c/Panel"]
+material = ExtResource("6_bo2dc")
+layout_mode = 0
+offset_left = 32.0
+offset_top = 13.0
+offset_right = 84.0
+offset_bottom = 29.0
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 16
+text = "PAUSE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Dialogue" type="CanvasLayer" parent="."]
+layer = 8
+visible = false
+script = ExtResource("7_j4v7v")
+
+[node name="c" type="Control" parent="Dialogue"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("11_yrm1c")
+
+[node name="Shade" type="ColorRect" parent="Dialogue/c"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.34902)
+
+[node name="Panel" type="Panel" parent="Dialogue/c"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -344.0
+offset_top = -288.0
+offset_right = -172.0
+offset_bottom = -144.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+
+[node name="Option1Button" type="Button" parent="Dialogue/c/Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -2.0
+offset_top = 122.0
+offset_right = 72.0
+offset_bottom = 147.0
+script = ExtResource("5_narkc")
+
+[node name="Label" type="Label" parent="Dialogue/c/Panel/Option1Button"]
+material = ExtResource("6_bo2dc")
+layout_mode = 0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 68.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 8
+text = "Start"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Option2Button" type="Button" parent="Dialogue/c/Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 100.0
+offset_top = 122.0
+offset_right = 174.0
+offset_bottom = 147.0
+theme = ExtResource("8_hd31q")
+script = ExtResource("5_narkc")
+
+[node name="Label" type="Label" parent="Dialogue/c/Panel/Option2Button"]
+material = ExtResource("6_bo2dc")
+layout_mode = 0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 68.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 8
+text = "Start"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Name" type="Label" parent="Dialogue/c/Panel"]
+unique_name_in_owner = true
+material = ExtResource("6_bo2dc")
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 116.0
+offset_bottom = 32.0
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 16
+text = "Temp name"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Dialogue" type="Label" parent="Dialogue/c/Panel"]
+unique_name_in_owner = true
+material = ExtResource("6_bo2dc")
 layout_mode = 0
 offset_left = 16.0
-offset_top = 16.0
-offset_right = 74.0
-offset_bottom = 74.0
-scale = Vector2(4, 4)
-texture = SubResource("GradientTexture2D_v15jo")
-
-[node name="Sprite2D" type="Sprite2D" parent="Game/HUD/Map"]
-position = Vector2(132, 132)
-scale = Vector2(4, 4)
-texture = ExtResource("20_aryt4")
-
-[node name="Speed" type="Label" parent="Game/HUD" groups=["Velocity"]]
-material = SubResource("ShaderMaterial_40miq")
-layout_mode = 0
-offset_left = 30.0
-offset_top = 707.0
-offset_right = 84.0
-offset_bottom = 715.0
-scale = Vector2(4, 4)
+offset_top = 30.0
+offset_right = 116.0
+offset_bottom = 120.0
+theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 8
-text = "VELOCITY: 0.0m/s"
+text = "hehe, I say some funny things xD"
+horizontal_alignment = 2
+autowrap_mode = 2
 
-[node name="Panel" type="Panel" parent="Game/HUD"]
-visible = false
+[node name="HeadIcon" type="TextureRect" parent="Dialogue/c/Panel"]
+unique_name_in_owner = true
 layout_mode = 0
-offset_left = 364.0
-offset_top = 283.0
-offset_right = 456.0
-offset_bottom = 365.0
-scale = Vector2(4, 4)
+offset_left = 120.0
+offset_top = 12.0
+offset_right = 160.0
+offset_bottom = 52.0
+texture = ExtResource("8_pjdl5")
+
+[node name="IconBG" type="TextureRect" parent="Dialogue/c/Panel/HeadIcon"]
+show_behind_parent = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("GradientTexture2D_0ipdo")
+
+[connection signal="pressed" from="Pause/c/Panel/BackButton" to="Pause" method="ResumePressed"]
+[connection signal="pressed" from="Pause/c/Panel/MenuButton" to="Pause" method="MainMenuPressed"]
+[connection signal="pressed" from="Pause/c/Panel/OptionsButton" to="Pause" method="OptionsPressed"]
+[connection signal="pressed" from="Pause/c/Panel/RestartButton" to="Pause" method="RestartPressed"]
+[connection signal="pressed" from="Dialogue/c/Panel/Option1Button" to="Dialogue" method="OptionPressed" binds= [1]]
+[connection signal="pressed" from="Dialogue/c/Panel/Option2Button" to="Dialogue" method="OptionPressed" binds= [2]]

@@ -1,4 +1,4 @@
-extends Node2D
+extends CanvasLayer
 
 func StartPressed():
 	Root.ins.ChangeScene(Root.Scene.GAME)

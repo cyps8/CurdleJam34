@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://vawbd7e87frw"]
+
+[ext_resource type="Script" path="res://Scripts/Game/AppearsOnMap.gd" id="1_tr308"]
+
+[node name="AppearsOnMap" type="Node2D"]
+script = ExtResource("1_tr308")

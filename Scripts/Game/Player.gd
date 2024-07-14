@@ -2,6 +2,10 @@
 extends CharacterBody2D
 
 class_name Player
+static var ins: Player
+
+func _init():
+	ins = self
 
 @export var angular_velocity = 0.0
 
@@ -10,6 +14,7 @@ class_name Player
 var playerSprite: Sprite2D
 
 var predPoints: Array = []
+var predCount: int = 10
 
 var smoke: CPUParticles2D
 var fire: CPUParticles2D
@@ -20,13 +25,13 @@ func _ready():
 	fire = $PlayerSprite/Fire
 	playerSprite.scale = Vector2.ONE
 
-	for _i in range(100):
+	for _i in range(predCount):
 		var predPoint = predPointIns.instantiate()
 		predPoint.position = Vector2.ZERO
 		predPoints.append(predPoint)
 		playerSprite.add_child(predPoint)
 		predPoint.z_index = -1
-		predPoint.modulate = Color(1, 1, 1, (100.0 - _i) / 100.0)
+		predPoint.modulate = Color(1, 1, 1, (predCount - _i) as float / predCount as float)
 
 	remove_child(playerSprite)
 	SubView.ins.add_child(playerSprite)

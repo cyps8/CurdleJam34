@@ -1,18 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://rfwb7grbpfi8"]
+[gd_scene load_steps=11 format=3 uid="uid://rfwb7grbpfi8"]
 
-[ext_resource type="Script" path="res://Scripts/Root.gd" id="1_wiumh"]
+[ext_resource type="Script" path="res://Scripts/Misc/Root.gd" id="1_wiumh"]
 [ext_resource type="Theme" uid="uid://6cgu0y46o3ww" path="res://Resources/Themes/HUD.tres" id="2_2rssi"]
 [ext_resource type="Script" path="res://Scripts/Menus/Options.gd" id="2_1384m"]
-[ext_resource type="PackedScene" uid="uid://2lifl5c0bvhp" path="res://Nodes/Scenes/game.tscn" id="2_d784k"]
+[ext_resource type="PackedScene" uid="uid://c3brmvfq2chmc" path="res://Nodes/Scenes/game.tscn" id="2_d784k"]
 [ext_resource type="PackedScene" uid="uid://bw2dcgvu2ljkj" path="res://Nodes/Scenes/menu.tscn" id="3_xdpoc"]
-[ext_resource type="Shader" path="res://Scripts/Shaders/Font.gdshader" id="4_b66jo"]
 [ext_resource type="Material" uid="uid://ccy71nrc7dqc4" path="res://Resources/Materials/LabelShader.tres" id="7_2ajh1"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_moxx4"]
-shader = ExtResource("4_b66jo")
-shader_parameter/color = null
+[ext_resource type="Script" path="res://Scripts/Menus/MenuButton.gd" id="7_k8a7w"]
+[ext_resource type="Script" path="res://Scripts/Misc/SFXPlayer.gd" id="7_kbua7"]
+[ext_resource type="Script" path="res://Scripts/Menus/VolumeSlider.gd" id="7_x2c2d"]
+[ext_resource type="Script" path="res://Scripts/Misc/LoadingText.gd" id="9_7optf"]
 
 [node name="Root" type="Node"]
+process_mode = 3
 script = ExtResource("1_wiumh")
 gameScene = ExtResource("2_d784k")
 menuScene = ExtResource("3_xdpoc")
@@ -54,15 +54,30 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(4, 4)
 
+[node name="Pause" type="Label" parent="OptionsMenu/c/Panel"]
+material = ExtResource("7_2ajh1")
+layout_mode = 0
+offset_left = 44.0
+offset_top = 14.0
+offset_right = 116.0
+offset_bottom = 30.0
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 16
+text = "OPTIONS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="BackButton" type="Button" parent="OptionsMenu/c/Panel"]
 layout_mode = 0
 offset_left = -2.0
 offset_top = 122.0
 offset_right = 62.0
 offset_bottom = 147.0
+script = ExtResource("7_k8a7w")
+backButton = true
 
 [node name="Label" type="Label" parent="OptionsMenu/c/Panel/BackButton"]
-material = SubResource("ShaderMaterial_moxx4")
+material = ExtResource("7_2ajh1")
 layout_mode = 0
 offset_left = 12.0
 offset_top = 4.0
@@ -73,9 +88,85 @@ text = "Back"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Label2" type="Label" parent="OptionsMenu/c/Panel"]
+material = ExtResource("7_2ajh1")
+layout_mode = 0
+offset_left = 60.0
+offset_top = 32.0
+offset_right = 100.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 8
+text = "Audio"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MasterSlider" type="HSlider" parent="OptionsMenu/c"]
+layout_mode = 0
+offset_left = 456.0
+offset_top = 272.0
+offset_right = 752.0
+offset_bottom = 288.0
+script = ExtResource("7_x2c2d")
+
+[node name="Label" type="Label" parent="OptionsMenu/c/MasterSlider"]
+material = ExtResource("7_2ajh1")
+layout_mode = 0
+offset_left = -168.0
+offset_top = -24.0
+offset_right = -128.0
+offset_bottom = -8.0
+scale = Vector2(4, 4)
+theme_override_font_sizes/font_size = 8
+text = "Master"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicSlider" type="HSlider" parent="OptionsMenu/c"]
+layout_mode = 0
+offset_left = 456.0
+offset_top = 336.0
+offset_right = 752.0
+offset_bottom = 352.0
+script = ExtResource("7_x2c2d")
+busName = "Music"
+
+[node name="Label" type="Label" parent="OptionsMenu/c/MusicSlider"]
+material = ExtResource("7_2ajh1")
+layout_mode = 0
+offset_left = -168.0
+offset_top = -24.0
+offset_right = -128.0
+offset_bottom = -8.0
+scale = Vector2(4, 4)
+theme_override_font_sizes/font_size = 8
+text = "Music"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SfxSlider" type="HSlider" parent="OptionsMenu/c"]
+layout_mode = 0
+offset_left = 456.0
+offset_top = 400.0
+offset_right = 752.0
+offset_bottom = 416.0
+script = ExtResource("7_x2c2d")
+busName = "SFX"
+
+[node name="Label" type="Label" parent="OptionsMenu/c/SfxSlider"]
+material = ExtResource("7_2ajh1")
+layout_mode = 0
+offset_left = -168.0
+offset_top = -24.0
+offset_right = -128.0
+offset_bottom = -8.0
+scale = Vector2(4, 4)
+theme_override_font_sizes/font_size = 8
+text = "SFX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="LoadingScreen" type="CanvasLayer" parent="."]
 layer = 100
-visible = false
 
 [node name="c" type="Control" parent="LoadingScreen"]
 layout_mode = 3
@@ -103,6 +194,14 @@ offset_top = 696.0
 offset_right = 114.0
 offset_bottom = 719.0
 scale = Vector2(4, 4)
-text = "LOAADING..."
+text = "LOADING..."
+script = ExtResource("9_7optf")
+
+[node name="SFXPlayer" type="Node" parent="."]
+script = ExtResource("7_kbua7")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="OptionsMenu/c/Panel/BackButton" to="OptionsMenu" method="BackPressed"]

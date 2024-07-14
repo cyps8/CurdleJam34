@@ -1,11 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://bw2dcgvu2ljkj"]
+[gd_scene load_steps=10 format=3 uid="uid://bw2dcgvu2ljkj"]
 
 [ext_resource type="Script" path="res://Scripts/Menus/MainMenu.gd" id="1_2n7kk"]
 [ext_resource type="Theme" uid="uid://6cgu0y46o3ww" path="res://Resources/Themes/HUD.tres" id="1_246g8"]
 [ext_resource type="Theme" uid="uid://d1cfjy5fdtqnu" path="res://Resources/Themes/RightButton.tres" id="2_xtd00"]
 [ext_resource type="Material" uid="uid://ccy71nrc7dqc4" path="res://Resources/Materials/LabelShader.tres" id="3_w2gxf"]
+[ext_resource type="Script" path="res://Scripts/Menus/MenuButton.gd" id="4_w8or8"]
+[ext_resource type="Script" path="res://Scripts/Menus/MMCam.gd" id="8_apv1c"]
+[ext_resource type="Script" path="res://Scripts/Game/Background.gd" id="9_njfdo"]
+[ext_resource type="PackedScene" uid="uid://vmafb4yd374y" path="res://Nodes/stars.tscn" id="10_6k5r4"]
 
-[node name="Menu" type="Node2D"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ph4df"]
+viewport_path = NodePath("SubView")
+
+[node name="Menu" type="CanvasLayer"]
+layer = 2
 script = ExtResource("1_2n7kk")
 
 [node name="c" type="Control" parent="."]
@@ -17,6 +25,15 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_246g8")
 
+[node name="Background" type="TextureRect" parent="c"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_ph4df")
+
 [node name="StartButton" type="Button" parent="c"]
 layout_mode = 0
 offset_left = -128.0
@@ -25,6 +42,8 @@ offset_right = -26.0
 offset_bottom = 314.0
 scale = Vector2(4, 4)
 theme = ExtResource("2_xtd00")
+script = ExtResource("4_w8or8")
+focusMove = Vector2(24, 0)
 
 [node name="Label" type="Label" parent="c/StartButton"]
 material = ExtResource("3_w2gxf")
@@ -44,6 +63,8 @@ offset_right = -50.0
 offset_bottom = 426.0
 scale = Vector2(4, 4)
 theme = ExtResource("2_xtd00")
+script = ExtResource("4_w8or8")
+focusMove = Vector2(24, 0)
 
 [node name="Label" type="Label" parent="c/OptionsButton"]
 material = ExtResource("3_w2gxf")
@@ -63,6 +84,9 @@ offset_right = -74.0
 offset_bottom = 538.0
 scale = Vector2(4, 4)
 theme = ExtResource("2_xtd00")
+script = ExtResource("4_w8or8")
+disableForWeb = true
+focusMove = Vector2(24, 0)
 
 [node name="Label" type="Label" parent="c/ExitButton"]
 material = ExtResource("3_w2gxf")
@@ -73,6 +97,67 @@ offset_right = 108.0
 offset_bottom = 24.0
 theme_override_font_sizes/font_size = 8
 text = "EXIT"
+
+[node name="GameName" type="Label" parent="c"]
+material = ExtResource("3_w2gxf")
+layout_mode = 0
+offset_left = 42.0
+offset_top = 56.0
+offset_right = 158.0
+offset_bottom = 72.0
+scale = Vector2(8, 8)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 16
+text = "THE GAME"
+horizontal_alignment = 1
+
+[node name="SubView" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+snap_2d_vertices_to_pixel = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(256, 192)
+render_target_update_mode = 4
+
+[node name="BackgroundMan" type="Node2D" parent="SubView" node_paths=PackedStringArray("cam")]
+script = ExtResource("9_njfdo")
+cam = NodePath("../Cam")
+starIns = ExtResource("10_6k5r4")
+starColor = Color(1, 1, 1, 0.792157)
+
+[node name="BackgroundMan2" type="Node2D" parent="SubView" node_paths=PackedStringArray("cam")]
+script = ExtResource("9_njfdo")
+cam = NodePath("../Cam")
+starIns = ExtResource("10_6k5r4")
+parMult = 3.0
+starColor = Color(1, 1, 1, 0.662745)
+
+[node name="BackgroundMan3" type="Node2D" parent="SubView" node_paths=PackedStringArray("cam")]
+script = ExtResource("9_njfdo")
+cam = NodePath("../Cam")
+starIns = ExtResource("10_6k5r4")
+parMult = 4.0
+starColor = Color(1, 1, 1, 0.47451)
+
+[node name="BackgroundMan4" type="Node2D" parent="SubView" node_paths=PackedStringArray("cam")]
+script = ExtResource("9_njfdo")
+cam = NodePath("../Cam")
+starIns = ExtResource("10_6k5r4")
+parMult = 5.0
+starColor = Color(1, 1, 1, 0.407843)
+
+[node name="BackgroundMan5" type="Node2D" parent="SubView" node_paths=PackedStringArray("cam")]
+script = ExtResource("9_njfdo")
+cam = NodePath("../Cam")
+starIns = ExtResource("10_6k5r4")
+parMult = 6.0
+starColor = Color(1, 1, 1, 0.392157)
+
+[node name="Cam" type="Camera2D" parent="SubView"]
+position = Vector2(-46, 38)
+ignore_rotation = false
+rotation_smoothing_enabled = true
+script = ExtResource("8_apv1c")
 
 [connection signal="pressed" from="c/StartButton" to="." method="StartPressed"]
 [connection signal="pressed" from="c/OptionsButton" to="." method="OptionsPressed"]

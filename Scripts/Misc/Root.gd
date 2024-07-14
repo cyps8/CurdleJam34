@@ -35,12 +35,12 @@ func _ready():
 	remove_child(loadingScreenRef)
 
 	ins = self
-	ChangeScene(Scene.MAINMENU)
+	if !skipMenu:
+		ChangeScene(Scene.MAINMENU)
+	else:
+		ChangeScene(Scene.GAME)
 
 func ChangeScene(newScene: Scene):
-	if currentScene == newScene:
-		return
-
 	if currentSceneNode != null:
 		currentSceneNode.queue_free()
 
@@ -51,7 +51,7 @@ func ChangeScene(newScene: Scene):
 
 	add_child(loadingScreenRef)
 
-	loadingDelay = 0
+	loadingDelay = 0.0
 		
 	ResourceLoader.load_threaded_request(currentPackedScene.resource_path)
 	loading = true
@@ -75,7 +75,8 @@ func _process(_delta):
 		loading = false
 		currentSceneNode = currentPackedScene.instantiate()
 		add_child(currentSceneNode)
-		HideLoadingScreen()
+		if currentScene != Scene.GAME:
+			HideLoadingScreen()
 
 func HideLoadingScreen():
 	remove_child(loadingScreenRef)
