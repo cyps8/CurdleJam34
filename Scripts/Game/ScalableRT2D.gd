@@ -17,3 +17,7 @@ func _process(_dt):
 			get_node(path).global_position = global_position * scaled
 		if updateRotation:
 			get_node(path).global_rotation = global_rotation
+
+func _exit_tree():
+	for path in remotePaths:
+		get_node(path).queue_free()

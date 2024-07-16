@@ -1,9 +1,8 @@
-[gd_scene load_steps=53 format=3 uid="uid://2lifl5c0bvhp"]
+[gd_scene load_steps=44 format=3 uid="uid://2lifl5c0bvhp"]
 
 [ext_resource type="Script" path="res://Scripts/Game/GravityMan.gd" id="1_3uasn"]
 [ext_resource type="Script" path="res://Scripts/Game/Gravity.gd" id="1_vsxqb"]
 [ext_resource type="Script" path="res://Scripts/Game/Planet.gd" id="2_63fin"]
-[ext_resource type="Shader" path="res://Scripts/Shaders/Objective.gdshader" id="2_i51pg"]
 [ext_resource type="Script" path="res://Scripts/Game/ScalableRT2D.gd" id="2_v7mfs"]
 [ext_resource type="Script" path="res://Scripts/Game/Player.gd" id="3_e6jg0"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/dashedcircle.gdshader" id="5_x1xlu"]
@@ -19,10 +18,8 @@
 [ext_resource type="Texture2D" uid="uid://l6qeth4dc3ri" path="res://Assets/Art/Objects/uvship.png" id="11_lni28"]
 [ext_resource type="Theme" uid="uid://6cgu0y46o3ww" path="res://Resources/Themes/HUD.tres" id="11_yrm1c"]
 [ext_resource type="Script" path="res://Scripts/Game/Background.gd" id="11_ywbsh"]
-[ext_resource type="Script" path="res://Scripts/Game/Objective.gd" id="15_d4o7v"]
 [ext_resource type="PackedScene" uid="uid://vmafb4yd374y" path="res://Nodes/stars.tscn" id="15_qh8a8"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Font.gdshader" id="16_8xe46"]
-[ext_resource type="Script" path="res://Scripts/Game/ObjectiveEffect.gd" id="17_fb6o4"]
 [ext_resource type="Texture2D" uid="uid://dcdw2gjmyvgx1" path="res://Assets/Art/UI/MapIcons/Player.png" id="20_aryt4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dods4"]
@@ -53,36 +50,6 @@ width = 32
 height = 32
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_3d34t"]
-radius = 50.0
-
-[sub_resource type="Gradient" id="Gradient_w8ps4"]
-offsets = PackedFloat32Array(0.243243, 0.442568, 0.77027, 0.949324)
-colors = PackedColorArray(1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_25302"]
-gradient = SubResource("Gradient_w8ps4")
-width = 4
-height = 4
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sd2tb"]
-shader = ExtResource("2_i51pg")
-shader_parameter/time = null
-shader_parameter/radius = 48.0
-shader_parameter/color = Color(0.6, 0.898039, 0.313726, 1)
-
-[sub_resource type="Gradient" id="Gradient_km6tv"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_n7u10"]
-gradient = SubResource("Gradient_km6tv")
-width = 96
-height = 96
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tlnsv"]
 radius = 13.4536
@@ -226,28 +193,6 @@ scaled = 0.25
 
 [node name="AppearsOnMap" parent="Planet2" instance=ExtResource("8_yw3hx")]
 texture = ExtResource("9_hetwy")
-
-[node name="Objective" type="Area2D" parent="."]
-position = Vector2(-1136, 568)
-script = ExtResource("15_d4o7v")
-
-[node name="Shape" type="CollisionShape2D" parent="Objective"]
-shape = SubResource("CircleShape2D_3d34t")
-
-[node name="AppearsOnMap" parent="Objective" instance=ExtResource("8_yw3hx")]
-texture = SubResource("GradientTexture2D_25302")
-alwaysShow = true
-
-[node name="Sprite" type="Sprite2D" parent="Objective"]
-material = SubResource("ShaderMaterial_sd2tb")
-texture = SubResource("GradientTexture2D_n7u10")
-script = ExtResource("17_fb6o4")
-
-[node name="Remote" type="Node2D" parent="Objective"]
-scale = Vector2(1, 0.999985)
-script = ExtResource("2_v7mfs")
-updateRotation = false
-scaled = 0.25
 
 [node name="Player" type="CharacterBody2D" parent="."]
 motion_mode = 1
@@ -407,13 +352,13 @@ texture = ExtResource("20_aryt4")
 [node name="Speed" type="Label" parent="Game/HUD" groups=["Velocity"]]
 material = SubResource("ShaderMaterial_40miq")
 layout_mode = 0
-offset_left = 30.0
-offset_top = 707.0
-offset_right = 84.0
-offset_bottom = 715.0
+offset_left = 528.0
+offset_top = 720.0
+offset_right = 594.0
+offset_bottom = 730.0
 scale = Vector2(4, 4)
 theme_override_font_sizes/font_size = 8
-text = "Velocity: 0.0m/s"
+text = "Velocity: 0m/s"
 
 [node name="Panel" type="Panel" parent="Game/HUD"]
 visible = false

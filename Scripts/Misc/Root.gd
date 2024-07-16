@@ -52,8 +52,10 @@ func ChangeScene(newScene: Scene):
 	add_child(loadingScreenRef)
 
 	loadingDelay = 0.0
-		
-	ResourceLoader.load_threaded_request(currentPackedScene.resource_path)
+
+	var delayTween: Tween = create_tween()
+	delayTween.tween_callback(ResourceLoader.load_threaded_request.bind(currentPackedScene.resource_path)).set_delay(0.05)
+	
 	loading = true
 
 	currentScene = newScene

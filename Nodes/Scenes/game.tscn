@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://c3brmvfq2chmc"]
+[gd_scene load_steps=13 format=3 uid="uid://c3brmvfq2chmc"]
 
 [ext_resource type="Script" path="res://Scripts/Game/GameManager.gd" id="1_eklrh"]
 [ext_resource type="PackedScene" uid="uid://2lifl5c0bvhp" path="res://Nodes/Scenes/world.tscn" id="2_eode3"]
+[ext_resource type="PackedScene" uid="uid://benpntdnc6jjh" path="res://Nodes/objective.tscn" id="2_lt11a"]
 [ext_resource type="Script" path="res://Scripts/Menus/Pause.gd" id="3_xychr"]
 [ext_resource type="Script" path="res://Scripts/Menus/MenuButton.gd" id="5_narkc"]
 [ext_resource type="Material" uid="uid://ccy71nrc7dqc4" path="res://Resources/Materials/LabelShader.tres" id="6_bo2dc"]
@@ -22,6 +23,7 @@ fill_from = Vector2(0.5, 0.5)
 
 [node name="Game" type="Node"]
 script = ExtResource("1_eklrh")
+objective = ExtResource("2_lt11a")
 
 [node name="World" parent="." instance=ExtResource("2_eode3")]
 
@@ -162,7 +164,6 @@ vertical_alignment = 1
 
 [node name="Dialogue" type="CanvasLayer" parent="."]
 layer = 8
-visible = false
 script = ExtResource("7_j4v7v")
 
 [node name="c" type="Control" parent="Dialogue"]

@@ -7,7 +7,10 @@ static var ins: Player
 func _init():
 	ins = self
 
-@export var angular_velocity = 0.0
+var angularVelocity = 0
+var direction: float = 0.0
+
+var drifting = false
 
 @export var predPointIns: PackedScene
 
@@ -40,11 +43,11 @@ func _ready():
 func _physics_process(_dt):
 	var input = Input.get_vector("Left", "Right", "Up", "Down")
 	
-	if input.x * angular_velocity < 0:
-		angular_velocity *= 0.95
-	angular_velocity += input.x * _dt * 0.01
-
-	rotation += angular_velocity
+	if input.x != 0:
+		angularVelocity = input.x * 1.3
+	else:
+		angularVelocity *= 0.9
+	rotation += angularVelocity * _dt
 
 	if input.y < 0:
 		smoke.emitting = true
@@ -55,12 +58,33 @@ func _physics_process(_dt):
 		fire.emitting = false
 		playerSprite.scale = Vector2(1.0, 1.0)
 
-	if velocity.length() > 0 && velocity.dot(Vector2(0, input.y).rotated(rotation)) < 0:
-		velocity *= 0.99
+	var rotatedDirection = velocity.normalized().rotated(PI/2)
+	var directionDot = Vector2(0, -1).rotated(rotation).dot(rotatedDirection)
+	direction = signf(directionDot)
+
+	drifting = false
 	if input.y > 0:
-		velocity += Vector2(0, input.y * _dt * 10.0).rotated(rotation)
+		if velocity.length() > 0:
+			var rotationDot = velocity.normalized().dot(Vector2(0, input.y).rotated(rotation))
+			if rotationDot < -0.259:
+				velocity *= 0.99
+				velocity += Vector2(0, input.y * _dt * 10.0).rotated(rotation)
+			elif velocity.length() > 50.0:
+				drifting = true
+				var drift = 0
+				var velocityMult = velocity.length() - 50 / 150.0
+				if velocityMult > 1.0:
+					velocityMult = 1.0
+				var angleMult = 1.0
+				var slowMult = 1.0
+				if rotationDot > 0.259:
+					angleMult = 1.0 + ((rotationDot - 0.259) * 2.0)
+					slowMult = 1.0 + ((rotationDot - 0.259) * 1000.0)
+				drift = direction * ((rotationDot * 3) + 1.0) * _dt * velocityMult * angleMult
+				rotation += drift
+				velocity = velocity.rotated(drift) * (1.0 - (0.0001 * slowMult))  
 	elif input.y < 0:
-		velocity += Vector2(0, input.y * _dt * 50.0).rotated(rotation)
+		velocity += Vector2(0, input.y * _dt * 35.0).rotated(rotation)
 
 	velocity += GetGravity(global_position)
 
@@ -75,8 +99,8 @@ func GetGravity(atPos: Vector2) -> Vector2:
 	for gravity in GravityMan.ins.points:
 		var distance = atPos.distance_to(gravity.global_position)
 		if distance < gravity.radius:
-			var direction = atPos.direction_to(gravity.global_position)
-			compound += direction * gravity.strenthMult * 5.0 * (1 - (distance / gravity.radius))
+			var gravDirection = atPos.direction_to(gravity.global_position)
+			compound += gravDirection * gravity.strenthMult * 5.0 * (1 - (distance / gravity.radius))
 	return compound
 
 func Prediction():

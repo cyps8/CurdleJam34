@@ -17,3 +17,6 @@ func _process(_dt):
 		sprite.position = ((global_position - Player.ins.global_position).normalized() * 3400).rotated(-Player.ins.rotation) * 0.005
 	elif (distance < 4500):
 		sprite.position = (global_position - Player.ins.global_position).rotated(-Player.ins.rotation) * 0.005
+
+func _exit_tree():
+	sprite.queue_free()

@@ -1,0 +1,60 @@
+[gd_scene load_steps=12 format=3 uid="uid://benpntdnc6jjh"]
+
+[ext_resource type="Script" path="res://Scripts/Game/Objective.gd" id="1_xqocl"]
+[ext_resource type="PackedScene" uid="uid://vawbd7e87frw" path="res://Nodes/appears_on_map.tscn" id="2_fjoeg"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/Objective.gdshader" id="3_jbp3u"]
+[ext_resource type="Script" path="res://Scripts/Game/ObjectiveEffect.gd" id="4_aodng"]
+[ext_resource type="Script" path="res://Scripts/Game/ScalableRT2D.gd" id="5_hexy2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3d34t"]
+radius = 50.0
+
+[sub_resource type="Gradient" id="Gradient_w8ps4"]
+offsets = PackedFloat32Array(0.243243, 0.442568, 0.77027, 0.949324)
+colors = PackedColorArray(1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_25302"]
+gradient = SubResource("Gradient_w8ps4")
+width = 4
+height = 4
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sd2tb"]
+shader = ExtResource("3_jbp3u")
+shader_parameter/time = null
+shader_parameter/radius = 48.0
+shader_parameter/color = Color(0.6, 0.898039, 0.313726, 1)
+
+[sub_resource type="Gradient" id="Gradient_km6tv"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n7u10"]
+gradient = SubResource("Gradient_km6tv")
+width = 96
+height = 96
+
+[node name="Objective" type="Area2D"]
+position = Vector2(-1136, 568)
+script = ExtResource("1_xqocl")
+radius = 150.0
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3d34t")
+
+[node name="AppearsOnMap" parent="." instance=ExtResource("2_fjoeg")]
+texture = SubResource("GradientTexture2D_25302")
+alwaysShow = true
+
+[node name="Sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_sd2tb")
+texture = SubResource("GradientTexture2D_n7u10")
+script = ExtResource("4_aodng")
+
+[node name="Remote" type="Node2D" parent="."]
+scale = Vector2(1, 0.999985)
+script = ExtResource("5_hexy2")
+updateRotation = false
+scaled = 0.25

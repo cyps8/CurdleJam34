@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://d1cfjy5fdtqnu"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://d1cfjy5fdtqnu"]
 
 [ext_resource type="Texture2D" uid="uid://0gm42unwf5qh" path="res://Assets/Art/UI/buttons/space_button_1_hover_R.png" id="1_kvrnj"]
 [ext_resource type="Texture2D" uid="uid://bjjrihatd1fth" path="res://Assets/Art/UI/buttons/space_button_1_disabled_R.png" id="1_o8hu2"]
@@ -11,6 +11,8 @@ texture_margin_left = 6.0
 texture_margin_top = 6.0
 texture_margin_right = 10.0
 texture_margin_bottom = 11.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uwguw"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hwmch"]
 texture = ExtResource("1_kvrnj")
@@ -35,7 +37,7 @@ texture_margin_bottom = 11.0
 
 [resource]
 Button/styles/disabled = SubResource("StyleBoxTexture_g6hng")
-Button/styles/focus = SubResource("StyleBoxTexture_hwmch")
+Button/styles/focus = SubResource("StyleBoxEmpty_uwguw")
 Button/styles/hover = SubResource("StyleBoxTexture_hwmch")
 Button/styles/normal = SubResource("StyleBoxTexture_c5mdx")
 Button/styles/pressed = SubResource("StyleBoxTexture_52cqn")

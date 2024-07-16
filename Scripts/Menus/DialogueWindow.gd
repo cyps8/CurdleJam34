@@ -43,8 +43,8 @@ func PlayDialogue(characterName: String, dialogue: String, icon: Texture2D = nul
 	call1 = option1
 	call2 = option2
 
-	nameText.visible_characters = 0
-	dialogueText.visible_characters = 0
+	nameText.visible_ratio = 0
+	dialogueText.visible_ratio = 0
 
 var timer: float = 0
 
@@ -54,6 +54,7 @@ func _process(_dt):
 		timer -= 0.05
 		if nameText.visible_characters < nameText.text.length():
 			nameText.visible_characters += 1
+			dialogueText.visible_characters = 0
 		elif dialogueText.visible_characters < dialogueText.text.length():
 			dialogueText.visible_characters += 1
 
