@@ -42,9 +42,10 @@ func _ready():
 
 func _physics_process(_dt):
 	var input = Input.get_vector("Left", "Right", "Up", "Down")
+	var brake = Input.is_action_pressed("Brake")
 	
 	if input.x != 0:
-		angularVelocity = input.x * 1.3
+		angularVelocity = input.x * 1.5
 	else:
 		angularVelocity *= 0.9
 	rotation += angularVelocity * _dt
@@ -63,7 +64,7 @@ func _physics_process(_dt):
 	direction = signf(directionDot)
 
 	drifting = false
-	if input.y > 0:
+	if input.y < 0 && brake:
 		if velocity.length() > 0:
 			var rotationDot = velocity.normalized().dot(Vector2(0, input.y).rotated(rotation))
 			if rotationDot < -0.259:
@@ -72,9 +73,9 @@ func _physics_process(_dt):
 			elif velocity.length() > 50.0:
 				drifting = true
 				var drift = 0
-				var velocityMult = velocity.length() - 50 / 150.0
+				var velocityMult = (velocity.length() - 50) / 150.0
 				if velocityMult > 1.0:
-					velocityMult = 1.0
+					velocityMult = 0.995
 				var angleMult = 1.0
 				var slowMult = 1.0
 				if rotationDot > 0.259:
@@ -83,8 +84,10 @@ func _physics_process(_dt):
 				drift = direction * ((rotationDot * 3) + 1.0) * _dt * velocityMult * angleMult
 				rotation += drift
 				velocity = velocity.rotated(drift) * (1.0 - (0.0001 * slowMult))  
-	elif input.y < 0:
-		velocity += Vector2(0, input.y * _dt * 35.0).rotated(rotation)
+	elif brake:
+		velocity *= 0.99
+	elif input.y != 0:
+		velocity += Vector2(0, input.y * _dt * 60.0).rotated(rotation)
 
 	velocity += GetGravity(global_position)
 

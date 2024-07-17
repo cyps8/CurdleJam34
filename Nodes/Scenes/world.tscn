@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://2lifl5c0bvhp"]
+[gd_scene load_steps=47 format=3 uid="uid://2lifl5c0bvhp"]
 
 [ext_resource type="Script" path="res://Scripts/Game/GravityMan.gd" id="1_3uasn"]
 [ext_resource type="Script" path="res://Scripts/Game/Gravity.gd" id="1_vsxqb"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://vawbd7e87frw" path="res://Nodes/appears_on_map.tscn" id="8_yw3hx"]
 [ext_resource type="PackedScene" uid="uid://ke5pkvavmqwc" path="res://Nodes/prediction_point.tscn" id="9_b7lgb"]
 [ext_resource type="Texture2D" uid="uid://c6g0als085y6b" path="res://Resources/MapIcons/Star.tres" id="9_hetwy"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/celestial_body.gdshader" id="10_xexd8"]
 [ext_resource type="Texture2D" uid="uid://bm0s4tupn6dm2" path="res://Assets/Art/UI/minimap.png" id="11_3ogp3"]
 [ext_resource type="Texture2D" uid="uid://l6qeth4dc3ri" path="res://Assets/Art/Objects/uvship.png" id="11_lni28"]
 [ext_resource type="Theme" uid="uid://6cgu0y46o3ww" path="res://Resources/Themes/HUD.tres" id="11_yrm1c"]
@@ -40,16 +41,34 @@ gradient = SubResource("Gradient_33r8i")
 width = 200
 height = 200
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gulnq"]
+shader = ExtResource("10_xexd8")
+shader_parameter/rotation = 1.79
+shader_parameter/time_speed = 0.5
+shader_parameter/colors = PackedColorArray(0.560784, 0.337255, 0.231373, 1, 0.87451, 0.443137, 0.14902, 1, 0.984314, 0.94902, 0.211765, 1, 0.87451, 0.443137, 0.14902, 1, 0.984314, 0.94902, 0.211765, 1, 1, 1, 1, 1)
+shader_parameter/size = 10.0
+shader_parameter/OCTAVES = 5
+shader_parameter/seed = 8.0
+
 [sub_resource type="Gradient" id="Gradient_k10dm"]
-offsets = PackedFloat32Array(0, 0.512987, 0.688312)
+offsets = PackedFloat32Array(0, 0.512987, 0.636364)
 colors = PackedColorArray(1, 1, 0.780392, 1, 1, 1, 0, 1, 1, 1, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_2xoh2"]
 gradient = SubResource("Gradient_k10dm")
-width = 32
-height = 32
+width = 45
+height = 45
 fill = 1
 fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7mjy8"]
+shader = ExtResource("10_xexd8")
+shader_parameter/rotation = 0.0
+shader_parameter/time_speed = 0.5
+shader_parameter/colors = PackedColorArray(0.560784, 0.337255, 0.231373, 1, 0.87451, 0.443137, 0.14902, 1, 0.984314, 0.94902, 0.211765, 1, 0.87451, 0.443137, 0.14902, 1, 0.984314, 0.94902, 0.211765, 1, 1, 1, 1, 1)
+shader_parameter/size = 10.0
+shader_parameter/OCTAVES = 5
+shader_parameter/seed = 7.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tlnsv"]
 radius = 13.4536
@@ -144,6 +163,7 @@ texture = SubResource("GradientTexture2D_u4h5j")
 script = ExtResource("6_0ffas")
 
 [node name="Sprite" type="Sprite2D" parent="Planet"]
+material = SubResource("ShaderMaterial_gulnq")
 scale = Vector2(4, 4)
 texture = SubResource("GradientTexture2D_2xoh2")
 
@@ -178,6 +198,7 @@ texture = SubResource("GradientTexture2D_u4h5j")
 script = ExtResource("6_0ffas")
 
 [node name="Sprite" type="Sprite2D" parent="Planet2"]
+material = SubResource("ShaderMaterial_7mjy8")
 scale = Vector2(4, 4)
 texture = SubResource("GradientTexture2D_2xoh2")
 

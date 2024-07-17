@@ -29,7 +29,6 @@ objective = ExtResource("2_lt11a")
 
 [node name="Pause" type="CanvasLayer" parent="."]
 layer = 8
-visible = false
 script = ExtResource("3_xychr")
 
 [node name="c" type="Control" parent="Pause"]
