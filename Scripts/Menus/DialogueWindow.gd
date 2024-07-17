@@ -56,9 +56,11 @@ func _process(_dt):
 		timer -= 0.05
 		if nameText.visible_characters < nameText.text.length():
 			nameText.visible_characters += 1
+			SFXPlayer.ins.PlaySound(3, SFXPlayer.SoundType.SFX, 1, 0.8 + (randf() * 0.4))
 			dialogueText.visible_characters = 0
 		elif dialogueText.visible_characters < dialogueText.text.length():
 			dialogueText.visible_characters += 1
+			SFXPlayer.ins.PlaySound(3, SFXPlayer.SoundType.SFX, 1, 0.8 + (randf() * 0.4))
 
 func OptionPressed(num: int):
 	if num == 1:

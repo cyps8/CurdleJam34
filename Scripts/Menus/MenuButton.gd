@@ -23,6 +23,7 @@ func _ready():
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 
 func Focused():
+	SFXPlayer.ins.PlaySound(1)
 	position = defaultPos + focusMove
 	if disabled:
 		return
@@ -30,7 +31,7 @@ func Focused():
 		grab_focus()
 
 func Pressed():
-	pass
+	SFXPlayer.ins.PlaySound(2)
 
 func Unfocused():
 	position = defaultPos

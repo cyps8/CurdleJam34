@@ -89,6 +89,7 @@ func NewDelivery(position: Vector2):
 	Oven.ins.AddPizza(currentCustomer)
 
 func DeliveryCompleted():
+	SFXPlayer.ins.PlaySound(0)
 	OpenDialogueWindow()
 	match Oven.ins.TakePizza():
 		Oven.Stage.RAW:

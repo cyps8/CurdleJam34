@@ -18,6 +18,8 @@ var isHot: bool = false
 var stageTime: float = 0
 var overallTime: float = 0
 
+var noiseTween: Tween
+
 @export var pizzas: Array[Texture2D]
 
 func _ready():
@@ -42,6 +44,16 @@ func TakePizza() -> Stage:
 
 func SetHot(hot: bool):
 	$Hot.visible = hot
+	if isHot != hot:
+		if hot:
+			if noiseTween: noiseTween.kill()
+			noiseTween = create_tween()
+			noiseTween.tween_property($SizzleNoise, "volume_db", 10.0, 0.5)
+			noiseTween.tween_property($SizzleNoise, "volume_db", 0.0, 2.5).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
+		else:
+			if noiseTween: noiseTween.kill()
+			noiseTween = create_tween()
+			noiseTween.tween_property($SizzleNoise, "volume_db", -80.0, 2.5)
 	isHot = hot
 
 func _process(_dt):

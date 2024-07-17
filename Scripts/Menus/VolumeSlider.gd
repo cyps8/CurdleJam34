@@ -16,6 +16,7 @@ func _ready():
 
 func OnChanged(_value: float):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(busName), linear_to_db(_value))
+	SFXPlayer.ins.PlaySound(2)
 
 func _process(_dt):
 	if !has_focus():

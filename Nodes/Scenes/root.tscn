@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://rfwb7grbpfi8"]
+[gd_scene load_steps=16 format=3 uid="uid://rfwb7grbpfi8"]
 
 [ext_resource type="Script" path="res://Scripts/Misc/Root.gd" id="1_wiumh"]
 [ext_resource type="Theme" uid="uid://6cgu0y46o3ww" path="res://Resources/Themes/HUD.tres" id="2_2rssi"]
@@ -10,7 +10,11 @@
 [ext_resource type="Script" path="res://Scripts/Misc/SFXPlayer.gd" id="7_kbua7"]
 [ext_resource type="Script" path="res://Scripts/Menus/VolumeSlider.gd" id="7_x2c2d"]
 [ext_resource type="Script" path="res://Scripts/Misc/LoadingText.gd" id="9_7optf"]
+[ext_resource type="AudioStream" uid="uid://civry41gvmjet" path="res://Assets/Audio/SFX/delivery complete.wav" id="11_33tc1"]
 [ext_resource type="AudioStream" uid="uid://dx1guq5sktjnv" path="res://Assets/Audio/Music/chillin done.ogg" id="11_qlneu"]
+[ext_resource type="AudioStream" uid="uid://dgxu3kg2vd65f" path="res://Assets/Audio/SFX/button hover cleaned.wav" id="12_5466r"]
+[ext_resource type="AudioStream" uid="uid://hy6piswtiwkj" path="res://Assets/Audio/SFX/button click cleaned.wav" id="13_cskq0"]
+[ext_resource type="AudioStream" uid="uid://cwpsv1rklva7q" path="res://Assets/Audio/SFX/talky sound cleaned.wav" id="14_6hn63"]
 
 [node name="Root" type="Node"]
 process_mode = 3
@@ -206,6 +210,7 @@ script = ExtResource("9_7optf")
 
 [node name="SFXPlayer" type="Node" parent="."]
 script = ExtResource("7_kbua7")
+sounds = Array[AudioStream]([ExtResource("11_33tc1"), ExtResource("12_5466r"), ExtResource("13_cskq0"), ExtResource("14_6hn63")])
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_qlneu")

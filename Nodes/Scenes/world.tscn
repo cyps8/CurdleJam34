@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://2lifl5c0bvhp"]
+[gd_scene load_steps=69 format=3 uid="uid://2lifl5c0bvhp"]
 
 [ext_resource type="Script" path="res://Scripts/Game/GravityMan.gd" id="1_3uasn"]
 [ext_resource type="Script" path="res://Scripts/Game/Gravity.gd" id="1_vsxqb"]
@@ -11,7 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://byv2os6irvt3r" path="res://Assets/Art/Objects/light.png" id="6_isp01"]
 [ext_resource type="Texture2D" uid="uid://dt1a7xl8p24yo" path="res://Assets/Art/Objects/ship.png" id="7_oq4j4"]
 [ext_resource type="Script" path="res://Scripts/Game/SubView.gd" id="7_xdvmi"]
+[ext_resource type="AudioStream" uid="uid://dqtjbgksir711" path="res://Assets/Audio/SFX/engine noise loop.ogg" id="8_mga53"]
 [ext_resource type="PackedScene" uid="uid://vawbd7e87frw" path="res://Nodes/appears_on_map.tscn" id="8_yw3hx"]
+[ext_resource type="AudioStream" uid="uid://q7ahed1m1uu" path="res://Assets/Audio/SFX/screesh real.ogg" id="9_2n57p"]
 [ext_resource type="PackedScene" uid="uid://ke5pkvavmqwc" path="res://Nodes/prediction_point.tscn" id="9_b7lgb"]
 [ext_resource type="Texture2D" uid="uid://c6g0als085y6b" path="res://Resources/MapIcons/Star.tres" id="9_hetwy"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/celestial_body.gdshader" id="10_xexd8"]
@@ -35,6 +37,7 @@
 [ext_resource type="Texture2D" uid="uid://btqqwp1vwgnhp" path="res://Assets/Art/UI/oven/perfect_blinker.png" id="28_kgb1k"]
 [ext_resource type="Texture2D" uid="uid://cb8hdcvbut64w" path="res://Assets/Art/UI/oven/uncooked_blinker.png" id="29_h0l5p"]
 [ext_resource type="Texture2D" uid="uid://crlvkrkk4cw6o" path="res://Assets/Art/UI/oven/undercooked_blinker.png" id="30_4byoq"]
+[ext_resource type="AudioStream" uid="uid://dau5rj37yh81b" path="res://Assets/Audio/SFX/sizzle.ogg" id="30_pccno"]
 [ext_resource type="Texture2D" uid="uid://u0v0wjwayyt3" path="res://Assets/Art/UI/oven/pointer.png" id="31_ron32"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tlnsv"]
@@ -83,6 +86,17 @@ point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_03ewk"]
 colors = PackedColorArray(0.85098, 0.341176, 0.388235, 1, 0.415686, 0.745098, 0.188235, 1)
+
+[sub_resource type="Gradient" id="Gradient_hfbcy"]
+offsets = PackedFloat32Array(0.305085, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vjev3"]
+gradient = SubResource("Gradient_hfbcy")
+width = 4
+height = 4
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_rirkk"]
 viewport_path = NodePath("SubView")
@@ -153,6 +167,15 @@ shader_parameter/size = 10.0
 shader_parameter/OCTAVES = 5
 shader_parameter/seed = 7.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_24t8w"]
+shader = ExtResource("10_xexd8")
+shader_parameter/rotation = 1.79
+shader_parameter/time_speed = 0.5
+shader_parameter/colors = PackedColorArray(0.560784, 0.337255, 0.231373, 1, 0.87451, 0.443137, 0.14902, 1, 0.984314, 0.94902, 0.211765, 1, 0.87451, 0.443137, 0.14902, 1, 0.984314, 0.94902, 0.211765, 1, 1, 1, 1, 1)
+shader_parameter/size = 10.0
+shader_parameter/OCTAVES = 5
+shader_parameter/seed = 8.0
+
 [sub_resource type="Gradient" id="Gradient_6ht2n"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0.0101351)
@@ -214,6 +237,22 @@ linear_accel_max = -5.0
 scale_amount_curve = SubResource("Curve_sn2ug")
 color_ramp = SubResource("Gradient_ps3ww")
 
+[node name="Brakes" type="CPUParticles2D" parent="Player/PlayerSprite"]
+z_index = -1
+position = Vector2(0, 8)
+emitting = false
+amount = 25
+lifetime = 2.0
+texture = SubResource("GradientTexture2D_k7uod")
+direction = Vector2(0, 1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+linear_accel_min = -5.0
+linear_accel_max = -5.0
+scale_amount_curve = SubResource("Curve_sn2ug")
+color_ramp = SubResource("Gradient_ps3ww")
+
 [node name="Fire" type="CPUParticles2D" parent="Player/PlayerSprite"]
 position = Vector2(0, 6)
 emitting = false
@@ -227,6 +266,28 @@ initial_velocity_min = 10.0
 initial_velocity_max = 10.0
 scale_amount_curve = SubResource("Curve_2prsw")
 color_ramp = SubResource("Gradient_03ewk")
+
+[node name="Brake1" type="Sprite2D" parent="Player/PlayerSprite"]
+visible = false
+position = Vector2(-5, 5)
+texture = SubResource("GradientTexture2D_vjev3")
+
+[node name="Brake2" type="Sprite2D" parent="Player/PlayerSprite"]
+visible = false
+position = Vector2(5, 5)
+texture = SubResource("GradientTexture2D_vjev3")
+
+[node name="EngineNoise" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("8_mga53")
+volume_db = -80.0
+autoplay = true
+bus = &"SFX"
+
+[node name="DriftNoise" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("9_2n57p")
+volume_db = -80.0
+autoplay = true
+bus = &"SFX"
 
 [node name="SubView" type="SubViewport" parent="."]
 disable_3d = true
@@ -399,6 +460,12 @@ texture = ExtResource("25_iifv5")
 [node name="Pointer" type="Sprite2D" parent="Game/Oven"]
 position = Vector2(-19, -13)
 texture = ExtResource("31_ron32")
+
+[node name="SizzleNoise" type="AudioStreamPlayer" parent="Game/Oven"]
+stream = ExtResource("30_pccno")
+volume_db = -80.0
+autoplay = true
+bus = &"SFX"
 
 [node name="Stars" type="Node2D" parent="."]
 
@@ -2523,7 +2590,7 @@ texture = SubResource("GradientTexture2D_u4h5j")
 script = ExtResource("6_0ffas")
 
 [node name="Sprite" type="Sprite2D" parent="Planets/Crocodile Planet"]
-material = SubResource("ShaderMaterial_gulnq")
+material = SubResource("ShaderMaterial_24t8w")
 scale = Vector2(4, 4)
 texture = SubResource("GradientTexture2D_2xoh2")
 
@@ -2555,7 +2622,7 @@ texture = SubResource("GradientTexture2D_u4h5j")
 script = ExtResource("6_0ffas")
 
 [node name="Sprite" type="Sprite2D" parent="Planets/Penguin Planet"]
-material = SubResource("ShaderMaterial_gulnq")
+material = SubResource("ShaderMaterial_24t8w")
 scale = Vector2(4, 4)
 texture = SubResource("GradientTexture2D_2xoh2")
 
@@ -2587,7 +2654,7 @@ texture = SubResource("GradientTexture2D_u4h5j")
 script = ExtResource("6_0ffas")
 
 [node name="Sprite" type="Sprite2D" parent="Planets/Goat Planet"]
-material = SubResource("ShaderMaterial_gulnq")
+material = SubResource("ShaderMaterial_24t8w")
 scale = Vector2(4, 4)
 texture = SubResource("GradientTexture2D_2xoh2")
 
@@ -2619,7 +2686,7 @@ texture = SubResource("GradientTexture2D_u4h5j")
 script = ExtResource("6_0ffas")
 
 [node name="Sprite" type="Sprite2D" parent="Planets/Train Planet"]
-material = SubResource("ShaderMaterial_gulnq")
+material = SubResource("ShaderMaterial_24t8w")
 scale = Vector2(4, 4)
 texture = SubResource("GradientTexture2D_2xoh2")
 
@@ -2651,7 +2718,7 @@ texture = SubResource("GradientTexture2D_u4h5j")
 script = ExtResource("6_0ffas")
 
 [node name="Sprite" type="Sprite2D" parent="Planets/Squid Planet"]
-material = SubResource("ShaderMaterial_gulnq")
+material = SubResource("ShaderMaterial_24t8w")
 scale = Vector2(4, 4)
 texture = SubResource("GradientTexture2D_2xoh2")
 
@@ -2683,7 +2750,7 @@ texture = SubResource("GradientTexture2D_u4h5j")
 script = ExtResource("6_0ffas")
 
 [node name="Sprite" type="Sprite2D" parent="Planets/Fish Planet"]
-material = SubResource("ShaderMaterial_gulnq")
+material = SubResource("ShaderMaterial_24t8w")
 scale = Vector2(4, 4)
 texture = SubResource("GradientTexture2D_2xoh2")
 

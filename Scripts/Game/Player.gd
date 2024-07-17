@@ -21,13 +21,20 @@ var predCount: int = 10
 
 var smoke: CPUParticles2D
 var fire: CPUParticles2D
+var brake1: Sprite2D
+var brake2: Sprite2D
 
 var heat = 0
+
+var noiseTween: Tween
+var noise2Tween: Tween
 
 func _ready():
 	playerSprite = $PlayerSprite 
 	smoke = $PlayerSprite/Smoke
 	fire = $PlayerSprite/Fire
+	brake1 = $PlayerSprite/Brake1
+	brake2 = $PlayerSprite/Brake2
 	playerSprite.scale = Vector2.ONE
 
 	for _i in range(predCount):
@@ -45,6 +52,9 @@ func _ready():
 func _physics_process(_dt):
 	var input = Input.get_vector("Left", "Right", "Up", "Down")
 	var brake = Input.is_action_pressed("Brake")
+
+	brake1.visible = brake
+	brake2.visible = brake
 	
 	if input.x != 0:
 		angularVelocity = input.x * 1.5
@@ -53,18 +63,27 @@ func _physics_process(_dt):
 	rotation += angularVelocity * _dt
 
 	if input.y < 0:
+		if smoke.emitting == false:
+			if noiseTween: noiseTween.kill()
+			noiseTween = create_tween()
+			noiseTween.tween_property($EngineNoise, "volume_db", 0.0, 0.05)
 		smoke.emitting = true
 		fire.emitting = true
 		playerSprite.scale = Vector2(0.92, 1.08)
 	else:
+		if smoke.emitting == true:
+			if noiseTween: noiseTween.kill()
+			noiseTween = create_tween()
+			noiseTween.tween_property($EngineNoise, "volume_db", -80.0, 0.5)
 		smoke.emitting = false
 		fire.emitting = false
 		playerSprite.scale = Vector2(1.0, 1.0)
-
+		
 	var rotatedDirection = velocity.normalized().rotated(PI/2)
 	var directionDot = Vector2(0, -1).rotated(rotation).dot(rotatedDirection)
 	direction = signf(directionDot)
 
+	var wasDrifting = drifting
 	drifting = false
 	if input.y < 0 && brake:
 		if velocity.length() > 0:
@@ -81,8 +100,8 @@ func _physics_process(_dt):
 				var angleMult = 1.0
 				var slowMult = 1.0
 				if rotationDot > 0.259:
-					angleMult = 1.0 + ((rotationDot - 0.259) * 2.0)
-					slowMult = 1.0 + ((rotationDot - 0.259) * 1000.0)
+					angleMult = 1.0 + ((rotationDot - 0.259) * 0.5)
+					slowMult = 1.0 + ((rotationDot - 0.259) * 500.0)
 				drift = direction * ((rotationDot * 3) + 1.0) * _dt * velocityMult * angleMult
 				rotation += drift
 				velocity = velocity.rotated(drift) * (1.0 - (0.0001 * slowMult))  
@@ -90,6 +109,16 @@ func _physics_process(_dt):
 		velocity *= 0.99
 	elif input.y != 0:
 		velocity += Vector2(0, input.y * _dt * 60.0).rotated(rotation)
+
+	if wasDrifting != drifting:
+		if drifting:
+			if noise2Tween: noise2Tween.kill()
+			noise2Tween = create_tween()
+			noise2Tween.tween_property($DriftNoise, "volume_db", 0.0, 0.05)
+		else:
+			if noise2Tween: noise2Tween.kill()
+			noise2Tween = create_tween()
+			noise2Tween.tween_property($DriftNoise, "volume_db", -80.0, 0.05)
 
 	velocity += GetGravity(global_position)
 
