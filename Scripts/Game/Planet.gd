@@ -29,6 +29,9 @@ func _ready():
 
 	body_entered.connect(BodyEntered)
 	body_exited.connect(BodyExited)
+	
+	sprite.material.set_shader_parameter("rotation", randf_range(0.0, 6.28))
+	sprite.material.set_shader_parameter("seed", randf_range(0.0, 6.28))
 
 func BodyEntered(body: PhysicsBody2D):
 	if (body is Player):
