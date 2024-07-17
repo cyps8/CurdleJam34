@@ -133,10 +133,10 @@ func _physics_process(_dt):
 func GetGravity(atPos: Vector2) -> Vector2:
 	var compound: Vector2 = Vector2.ZERO
 	for gravity in GravityMan.ins.points:
-		var distance = atPos.distance_to(gravity.global_position)
-		if distance < gravity.radius:
+		var distance = atPos.distance_squared_to(gravity.global_position)
+		if distance < gravity.radius * gravity.radius:
 			var gravDirection = atPos.direction_to(gravity.global_position)
-			compound += gravDirection * gravity.strenthMult * 5.0 * (1 - (distance / gravity.radius))
+			compound += gravDirection * gravity.strenthMult * 5.0 * (1 - (distance / (gravity.radius * gravity.radius)))
 	return compound
 
 func Prediction():
