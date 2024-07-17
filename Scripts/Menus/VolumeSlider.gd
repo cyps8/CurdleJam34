@@ -12,9 +12,6 @@ func _ready():
 	value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index(busName)))
 	value_changed.connect(Callable(OnChanged))
 
-	if pivot_offset == Vector2(0, 0):
-		pivot_offset = size/2
-
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 
 func OnChanged(_value: float):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c3brmvfq2chmc"]
+[gd_scene load_steps=19 format=3 uid="uid://c3brmvfq2chmc"]
 
 [ext_resource type="Script" path="res://Scripts/Game/GameManager.gd" id="1_eklrh"]
 [ext_resource type="PackedScene" uid="uid://2lifl5c0bvhp" path="res://Nodes/Scenes/world.tscn" id="2_eode3"]
@@ -9,7 +9,13 @@
 [ext_resource type="Script" path="res://Scripts/Menus/DialogueWindow.gd" id="7_j4v7v"]
 [ext_resource type="Theme" uid="uid://d1cfjy5fdtqnu" path="res://Resources/Themes/RightButton.tres" id="8_hd31q"]
 [ext_resource type="Texture2D" uid="uid://dpqc7yd7vb0s" path="res://Assets/Art/UI/portraits/crocodile.png" id="8_pjdl5"]
+[ext_resource type="Texture2D" uid="uid://c8nkc38ikoc7n" path="res://Assets/Art/UI/portraits/penguin.png" id="10_npsfs"]
+[ext_resource type="Texture2D" uid="uid://4mxank2n4yrk" path="res://Assets/Art/UI/portraits/goat.png" id="10_unlsw"]
+[ext_resource type="Texture2D" uid="uid://8fbemq4a5444" path="res://Assets/Art/UI/portraits/train.png" id="11_f88ga"]
 [ext_resource type="Theme" uid="uid://6cgu0y46o3ww" path="res://Resources/Themes/HUD.tres" id="11_yrm1c"]
+[ext_resource type="Texture2D" uid="uid://bdctjfi60xk43" path="res://Assets/Art/UI/portraits/squid.png" id="12_h4sxy"]
+[ext_resource type="Texture2D" uid="uid://bn41nnc1vmea5" path="res://Assets/Art/UI/portraits/fish.png" id="13_v6y7g"]
+[ext_resource type="Texture2D" uid="uid://cwmxeugj2025d" path="res://Assets/Art/UI/portraits/boss.png" id="15_mdcm3"]
 
 [sub_resource type="Gradient" id="Gradient_bmdad"]
 colors = PackedColorArray(0, 0, 0, 1, 0.133333, 0.12549, 0.203922, 1)
@@ -164,6 +170,7 @@ vertical_alignment = 1
 [node name="Dialogue" type="CanvasLayer" parent="."]
 layer = 8
 script = ExtResource("7_j4v7v")
+icons = Array[Texture2D]([ExtResource("8_pjdl5"), ExtResource("10_npsfs"), ExtResource("10_unlsw"), ExtResource("11_f88ga"), ExtResource("12_h4sxy"), ExtResource("13_v6y7g"), ExtResource("15_mdcm3")])
 
 [node name="c" type="Control" parent="Dialogue"]
 layout_mode = 3

@@ -13,6 +13,17 @@ var dialogueOpen: bool = false
 
 @export var objective: PackedScene
 
+enum Customer {
+	CROC,
+	PENGUIN,
+	GOAT,
+	TRAIN,
+	SQUID,
+	FISH
+}
+
+var currentCustomer: int = 0
+
 func _init():
 	ins = self
 
@@ -26,7 +37,7 @@ func _ready():
 	var delayTween: Tween = create_tween()
 	delayTween.tween_callback(Root.ins.HideLoadingScreen).set_delay(0.05)
 	OpenDialogueWindow()
-	DialogueWindow.ins.PlayDialogue("BOSS", "Hey! Delivery dude! what are you doing sitting around on your lazy butt! Go do some deliveries!!!", null, self.StartGame, "On it!")
+	DialogueWindow.ins.PlayDialogue("BOSS", "Hey! Delivery dude! what are you doing sitting around on your lazy butt! Go do some deliveries!!!", 6, self.StartGame, "On it!")
 
 func _process(_dt):
 	if Input.is_action_just_pressed("Pause") && !Root.ins.optionsOpen && !dialogueOpen:
@@ -54,15 +65,14 @@ func CloseDialogueWindow():
 	remove_child(dialogueWinRef)
 
 func AcceptNewDelivery():
-	var pos = Vector2(randi_range(-2500, 2500), randi_range(-2500, 2500))
-	while pos.length() < 500:
-		pos = Vector2(randi_range(-2500, 2500), randi_range(-2500, 2500))
+	var pos = $World/Planets.get_child(currentCustomer).global_position
 	NewDelivery(pos)
 	CloseDialogueWindow()
 
 func GetNewDelivery():
 	OpenDialogueWindow()
-	DialogueWindow.ins.PlayDialogue("BOSS", "Here is a new order", null, self.AcceptNewDelivery, "okie")
+	currentCustomer = randi_range(0, 5)
+	DialogueWindow.ins.PlayDialogue("BOSS", "Here is a new order", 6, self.AcceptNewDelivery, "okie")
 
 func ReturnToBase():
 	var newObjective = objective.instantiate()
@@ -76,7 +86,21 @@ func NewDelivery(position: Vector2):
 	$World.add_child(newObjective)
 	newObjective.trigger = self.DeliveryCompleted
 	newObjective.position = position
+	Oven.ins.AddPizza(currentCustomer)
 
 func DeliveryCompleted():
 	OpenDialogueWindow()
-	DialogueWindow.ins.PlayDialogue("Customer", "Ty :3", null, self.ReturnToBase, "yw :3")
+	match Oven.ins.TakePizza():
+		Oven.Stage.RAW:
+			DialogueWindow.ins.PlayDialogue("Customer", "ITS RAWWW", currentCustomer, self.ReturnToBase, "oopsie")
+		Oven.Stage.UNDER:
+			DialogueWindow.ins.PlayDialogue("Customer", "The cheese isn't even melted...", currentCustomer, self.ReturnToBase, "my bad")
+		Oven.Stage.GOOD:
+			DialogueWindow.ins.PlayDialogue("Customer", "Thank you for the pizza!", currentCustomer, self.ReturnToBase, "yay")
+		Oven.Stage.PERFECT:
+			DialogueWindow.ins.PlayDialogue("Customer", "This pizza is PERFECT, tysm!", currentCustomer, self.ReturnToBase, "poger")
+		Oven.Stage.OVER:
+			DialogueWindow.ins.PlayDialogue("Customer", "Its a little too crispy, but still nice", currentCustomer, self.ReturnToBase, "okay")
+		Oven.Stage.BURNT:
+			DialogueWindow.ins.PlayDialogue("Customer", "Its burnt", currentCustomer, self.ReturnToBase, "uh oh")
+	

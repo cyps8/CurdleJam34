@@ -18,6 +18,8 @@ var option2Text: Label
 var call1: Callable
 var call2: Callable
 
+@export var icons: Array[Texture2D]
+
 func _ready():
 	nameText = %Name
 	dialogueText = %Dialogue
@@ -31,11 +33,11 @@ func _ready():
 	option1Text = option1Button.get_node("Label")
 	option2Text = option2Button.get_node("Label")
 
-func PlayDialogue(characterName: String, dialogue: String, icon: Texture2D = null, option1: Callable = Callable(), option1String: String = "", option2: Callable = Callable(), option2String: String = ""):
+func PlayDialogue(characterName: String, dialogue: String, icon: int = -1, option1: Callable = Callable(), option1String: String = "", option2: Callable = Callable(), option2String: String = ""):
 	nameText.text = characterName
 	dialogueText.text = dialogue
-	if icon != null:
-		headIcon.texture = icon
+	if icon != -1:
+		headIcon.texture = icons[icon]
 	option1Button.visible = option1.is_valid()
 	option2Button.visible = option2.is_valid()
 	option1Text.text = option1String

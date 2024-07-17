@@ -22,6 +22,8 @@ var predCount: int = 10
 var smoke: CPUParticles2D
 var fire: CPUParticles2D
 
+var heat = 0
+
 func _ready():
 	playerSprite = $PlayerSprite 
 	smoke = $PlayerSprite/Smoke
@@ -90,6 +92,8 @@ func _physics_process(_dt):
 		velocity += Vector2(0, input.y * _dt * 60.0).rotated(rotation)
 
 	velocity += GetGravity(global_position)
+
+	Oven.ins.SetHot(heat > 0)
 
 	Prediction()
 

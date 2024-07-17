@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://2lifl5c0bvhp"]
+[gd_scene load_steps=63 format=3 uid="uid://2lifl5c0bvhp"]
 
 [ext_resource type="Script" path="res://Scripts/Game/GravityMan.gd" id="1_3uasn"]
 [ext_resource type="Script" path="res://Scripts/Game/Gravity.gd" id="1_vsxqb"]
@@ -21,54 +21,21 @@
 [ext_resource type="Script" path="res://Scripts/Game/Background.gd" id="11_ywbsh"]
 [ext_resource type="PackedScene" uid="uid://vmafb4yd374y" path="res://Nodes/stars.tscn" id="15_qh8a8"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Font.gdshader" id="16_8xe46"]
+[ext_resource type="Texture2D" uid="uid://ckwl7du4uhtxg" path="res://Assets/Art/UI/oven/fish_pizza.png" id="18_3ivnk"]
+[ext_resource type="Texture2D" uid="uid://ct1go2ms5asts" path="res://Assets/Art/UI/oven/greens_pizza.png" id="19_4b1up"]
 [ext_resource type="Texture2D" uid="uid://dcdw2gjmyvgx1" path="res://Assets/Art/UI/MapIcons/Player.png" id="20_aryt4"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_dods4"]
-radius = 49.2544
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hjxc6"]
-shader = ExtResource("5_x1xlu")
-shader_parameter/radius = 100.0
-shader_parameter/line_thickness = 0.9
-
-[sub_resource type="Gradient" id="Gradient_33r8i"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_u4h5j"]
-gradient = SubResource("Gradient_33r8i")
-width = 200
-height = 200
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gulnq"]
-shader = ExtResource("10_xexd8")
-shader_parameter/rotation = 1.79
-shader_parameter/time_speed = 0.5
-shader_parameter/colors = PackedColorArray(0.560784, 0.337255, 0.231373, 1, 0.87451, 0.443137, 0.14902, 1, 0.984314, 0.94902, 0.211765, 1, 0.87451, 0.443137, 0.14902, 1, 0.984314, 0.94902, 0.211765, 1, 1, 1, 1, 1)
-shader_parameter/size = 10.0
-shader_parameter/OCTAVES = 5
-shader_parameter/seed = 8.0
-
-[sub_resource type="Gradient" id="Gradient_k10dm"]
-offsets = PackedFloat32Array(0, 0.512987, 0.636364)
-colors = PackedColorArray(1, 1, 0.780392, 1, 1, 1, 0, 1, 1, 1, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_2xoh2"]
-gradient = SubResource("Gradient_k10dm")
-width = 45
-height = 45
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7mjy8"]
-shader = ExtResource("10_xexd8")
-shader_parameter/rotation = 0.0
-shader_parameter/time_speed = 0.5
-shader_parameter/colors = PackedColorArray(0.560784, 0.337255, 0.231373, 1, 0.87451, 0.443137, 0.14902, 1, 0.984314, 0.94902, 0.211765, 1, 0.87451, 0.443137, 0.14902, 1, 0.984314, 0.94902, 0.211765, 1, 1, 1, 1, 1)
-shader_parameter/size = 10.0
-shader_parameter/OCTAVES = 5
-shader_parameter/seed = 7.0
+[ext_resource type="Texture2D" uid="uid://bnxuc2iyaytpp" path="res://Assets/Art/UI/oven/oven.png" id="23_xxrxy"]
+[ext_resource type="Texture2D" uid="uid://o6bqnkhjvjm3" path="res://Assets/Art/UI/oven/oven_hot.png" id="24_lshdb"]
+[ext_resource type="Script" path="res://Scripts/Game/Oven.gd" id="24_w8djy"]
+[ext_resource type="Texture2D" uid="uid://croscjiquvys1" path="res://Assets/Art/UI/oven/cheese_pizza.png" id="25_7caa1"]
+[ext_resource type="Texture2D" uid="uid://dt3k5mkdbbjto" path="res://Assets/Art/UI/oven/burnt_blinker.png" id="25_iifv5"]
+[ext_resource type="Texture2D" uid="uid://b8qpik1qnhaon" path="res://Assets/Art/UI/oven/good_blinker.png" id="26_8bivt"]
+[ext_resource type="Texture2D" uid="uid://3uhamteqsvyr" path="res://Assets/Art/UI/oven/train_pizza.png" id="26_edbeo"]
+[ext_resource type="Texture2D" uid="uid://5wsh15fy2so" path="res://Assets/Art/UI/oven/overcooked_blinker.png" id="27_hgi8q"]
+[ext_resource type="Texture2D" uid="uid://btqqwp1vwgnhp" path="res://Assets/Art/UI/oven/perfect_blinker.png" id="28_kgb1k"]
+[ext_resource type="Texture2D" uid="uid://cb8hdcvbut64w" path="res://Assets/Art/UI/oven/uncooked_blinker.png" id="29_h0l5p"]
+[ext_resource type="Texture2D" uid="uid://crlvkrkk4cw6o" path="res://Assets/Art/UI/oven/undercooked_blinker.png" id="30_4byoq"]
+[ext_resource type="Texture2D" uid="uid://u0v0wjwayyt3" path="res://Assets/Art/UI/oven/pointer.png" id="31_ron32"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tlnsv"]
 radius = 13.4536
@@ -139,81 +106,68 @@ fill_from = Vector2(0.5, 0.5)
 shader = ExtResource("16_8xe46")
 shader_parameter/color = Color(0.133333, 0.12549, 0.203922, 1)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_dods4"]
+radius = 400.18
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hjxc6"]
+shader = ExtResource("5_x1xlu")
+shader_parameter/radius = 100.0
+shader_parameter/line_thickness = 0.9
+
+[sub_resource type="Gradient" id="Gradient_33r8i"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u4h5j"]
+gradient = SubResource("Gradient_33r8i")
+width = 200
+height = 200
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gulnq"]
+shader = ExtResource("10_xexd8")
+shader_parameter/rotation = 1.79
+shader_parameter/time_speed = 0.5
+shader_parameter/colors = PackedColorArray(0.560784, 0.337255, 0.231373, 1, 0.87451, 0.443137, 0.14902, 1, 0.984314, 0.94902, 0.211765, 1, 0.87451, 0.443137, 0.14902, 1, 0.984314, 0.94902, 0.211765, 1, 1, 1, 1, 1)
+shader_parameter/size = 10.0
+shader_parameter/OCTAVES = 5
+shader_parameter/seed = 8.0
+
+[sub_resource type="Gradient" id="Gradient_k10dm"]
+offsets = PackedFloat32Array(0, 0.512987, 0.636364)
+colors = PackedColorArray(1, 1, 0.780392, 1, 1, 1, 0, 1, 1, 1, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2xoh2"]
+gradient = SubResource("Gradient_k10dm")
+width = 45
+height = 45
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7mjy8"]
+shader = ExtResource("10_xexd8")
+shader_parameter/rotation = 0.0
+shader_parameter/time_speed = 0.5
+shader_parameter/colors = PackedColorArray(0.560784, 0.337255, 0.231373, 1, 0.87451, 0.443137, 0.14902, 1, 0.984314, 0.94902, 0.211765, 1, 0.87451, 0.443137, 0.14902, 1, 0.984314, 0.94902, 0.211765, 1, 1, 1, 1, 1)
+shader_parameter/size = 10.0
+shader_parameter/OCTAVES = 5
+shader_parameter/seed = 7.0
+
+[sub_resource type="Gradient" id="Gradient_6ht2n"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.0101351)
+colors = PackedColorArray(0, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bumkd"]
+gradient = SubResource("Gradient_6ht2n")
+width = 2
+height = 2
+
 [node name="World" type="Node2D"]
 process_mode = 1
 
 [node name="GravityMan" type="Node2D" parent="."]
 script = ExtResource("1_3uasn")
-
-[node name="Planet" type="Area2D" parent="."]
-position = Vector2(634, -360)
-script = ExtResource("2_63fin")
-
-[node name="Death" type="CollisionShape2D" parent="Planet"]
-shape = SubResource("CircleShape2D_dods4")
-debug_color = Color(0.976471, 0, 0.407843, 0.419608)
-
-[node name="Gravity" type="Node2D" parent="Planet"]
-script = ExtResource("1_vsxqb")
-
-[node name="GravityOutline" type="Sprite2D" parent="Planet"]
-material = SubResource("ShaderMaterial_hjxc6")
-scale = Vector2(4, 4)
-texture = SubResource("GradientTexture2D_u4h5j")
-script = ExtResource("6_0ffas")
-
-[node name="Sprite" type="Sprite2D" parent="Planet"]
-material = SubResource("ShaderMaterial_gulnq")
-scale = Vector2(4, 4)
-texture = SubResource("GradientTexture2D_2xoh2")
-
-[node name="Light" type="PointLight2D" parent="Planet/Sprite"]
-color = Color(1, 1, 0.823529, 1)
-texture = ExtResource("6_isp01")
-
-[node name="Remote" type="Node2D" parent="Planet"]
-scale = Vector2(1, 0.999985)
-script = ExtResource("2_v7mfs")
-updateRotation = false
-scaled = 0.25
-
-[node name="AppearsOnMap" parent="Planet" instance=ExtResource("8_yw3hx")]
-texture = ExtResource("9_hetwy")
-
-[node name="Planet2" type="Area2D" parent="."]
-position = Vector2(-439, -469)
-script = ExtResource("2_63fin")
-
-[node name="Death" type="CollisionShape2D" parent="Planet2"]
-shape = SubResource("CircleShape2D_dods4")
-debug_color = Color(0.976471, 0, 0.407843, 0.419608)
-
-[node name="Gravity" type="Node2D" parent="Planet2"]
-script = ExtResource("1_vsxqb")
-
-[node name="GravityOutline" type="Sprite2D" parent="Planet2"]
-material = SubResource("ShaderMaterial_hjxc6")
-scale = Vector2(4, 4)
-texture = SubResource("GradientTexture2D_u4h5j")
-script = ExtResource("6_0ffas")
-
-[node name="Sprite" type="Sprite2D" parent="Planet2"]
-material = SubResource("ShaderMaterial_7mjy8")
-scale = Vector2(4, 4)
-texture = SubResource("GradientTexture2D_2xoh2")
-
-[node name="Light" type="PointLight2D" parent="Planet2/Sprite"]
-color = Color(1, 1, 0.823529, 1)
-texture = ExtResource("6_isp01")
-
-[node name="Remote" type="Node2D" parent="Planet2"]
-scale = Vector2(1, 0.999985)
-script = ExtResource("2_v7mfs")
-updateRotation = false
-scaled = 0.25
-
-[node name="AppearsOnMap" parent="Planet2" instance=ExtResource("8_yw3hx")]
-texture = ExtResource("9_hetwy")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 motion_mode = 1
@@ -373,9 +327,9 @@ texture = ExtResource("20_aryt4")
 [node name="Speed" type="Label" parent="Game/HUD" groups=["Velocity"]]
 material = SubResource("ShaderMaterial_40miq")
 layout_mode = 0
-offset_left = 528.0
+offset_left = 404.0
 offset_top = 720.0
-offset_right = 594.0
+offset_right = 470.0
 offset_bottom = 730.0
 scale = Vector2(4, 4)
 theme_override_font_sizes/font_size = 8
@@ -389,3 +343,2355 @@ offset_top = 283.0
 offset_right = 456.0
 offset_bottom = 365.0
 scale = Vector2(4, 4)
+
+[node name="Oven" type="Sprite2D" parent="Game"]
+position = Vector2(160, 624)
+scale = Vector2(4, 4)
+texture = ExtResource("23_xxrxy")
+script = ExtResource("24_w8djy")
+stageTimes = Array[float]([3.0, 5.5, 3.0, 2.0, 3.0, 99999.0])
+pizzas = Array[Texture2D]([ExtResource("25_7caa1"), ExtResource("18_3ivnk"), ExtResource("19_4b1up"), ExtResource("26_edbeo"), ExtResource("18_3ivnk"), ExtResource("19_4b1up")])
+
+[node name="Hot" type="Sprite2D" parent="Game/Oven"]
+visible = false
+position = Vector2(-1, 13)
+texture = ExtResource("24_lshdb")
+
+[node name="Pizza" type="Sprite2D" parent="Game/Oven"]
+visible = false
+position = Vector2(-1, 11)
+texture = ExtResource("26_edbeo")
+region_enabled = true
+region_rect = Rect2(0, 0, 48, 32)
+
+[node name="Blinkers" type="Node2D" parent="Game/Oven"]
+
+[node name="Uncooked" type="Sprite2D" parent="Game/Oven/Blinkers"]
+visible = false
+position = Vector2(-19, -11)
+texture = ExtResource("29_h0l5p")
+
+[node name="Undercooked" type="Sprite2D" parent="Game/Oven/Blinkers"]
+visible = false
+position = Vector2(-8, -11)
+texture = ExtResource("30_4byoq")
+
+[node name="Good" type="Sprite2D" parent="Game/Oven/Blinkers"]
+visible = false
+position = Vector2(1, -11)
+texture = ExtResource("26_8bivt")
+
+[node name="Perfect" type="Sprite2D" parent="Game/Oven/Blinkers"]
+visible = false
+position = Vector2(6, -11)
+texture = ExtResource("28_kgb1k")
+
+[node name="Overcooked" type="Sprite2D" parent="Game/Oven/Blinkers"]
+visible = false
+position = Vector2(11, -11)
+texture = ExtResource("27_hgi8q")
+
+[node name="Burnt" type="Sprite2D" parent="Game/Oven/Blinkers"]
+visible = false
+position = Vector2(18, -11)
+texture = ExtResource("25_iifv5")
+
+[node name="Pointer" type="Sprite2D" parent="Game/Oven"]
+position = Vector2(-19, -13)
+texture = ExtResource("31_ron32")
+
+[node name="Stars" type="Node2D" parent="."]
+
+[node name="Star" type="Area2D" parent="Stars"]
+position = Vector2(634, -360)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star"]
+material = SubResource("ShaderMaterial_gulnq")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star2" type="Area2D" parent="Stars"]
+position = Vector2(-439, -469)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star2"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star2"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star2"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star2"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star2/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star2"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star2" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star3" type="Area2D" parent="Stars"]
+position = Vector2(-1056, 704)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star3"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star3"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star3"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star3"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star3/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star3"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star3" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star4" type="Area2D" parent="Stars"]
+position = Vector2(-192, 1168)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star4"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star4"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star4"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star4"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star4/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star4"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star4" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star5" type="Area2D" parent="Stars"]
+position = Vector2(-1472, 1436)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star5"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star5"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star5"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star5"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star5/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star5"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star5" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star6" type="Area2D" parent="Stars"]
+position = Vector2(-1736, -332)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star6"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star6"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star6"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star6"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star6/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star6"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star6" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star7" type="Area2D" parent="Stars"]
+position = Vector2(-1324, -1776)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star7"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star7"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star7"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star7"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star7/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star7"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star7" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star8" type="Area2D" parent="Stars"]
+position = Vector2(-436, -1884)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star8"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star8"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star8"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star8"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star8/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star8"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star8" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star9" type="Area2D" parent="Stars"]
+position = Vector2(512, -1972)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star9"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star9"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star9"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star9"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star9/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star9"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star9" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star10" type="Area2D" parent="Stars"]
+position = Vector2(1364, -1212)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star10"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star10"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star10"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star10"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star10/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star10"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star10" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star11" type="Area2D" parent="Stars"]
+position = Vector2(944, 812)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star11"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star11"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star11"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star11"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star11/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star11"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star11" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star12" type="Area2D" parent="Stars"]
+position = Vector2(812, 2132)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star12"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star12"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star12"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star12"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star12/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star12"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star12" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star13" type="Area2D" parent="Stars"]
+position = Vector2(2280, -32)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star13"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star13"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star13"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star13"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star13/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star13"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star13" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star14" type="Area2D" parent="Stars"]
+position = Vector2(-632, 2196)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star14"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star14"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star14"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star14"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star14/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star14"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star14" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star15" type="Area2D" parent="Stars"]
+position = Vector2(-2668, 616)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star15"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star15"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star15"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star15"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star15/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star15"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star15" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star16" type="Area2D" parent="Stars"]
+position = Vector2(-2676, -1212)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star16"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star16"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star16"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star16"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star16/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star16"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star16" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star17" type="Area2D" parent="Stars"]
+position = Vector2(-2284, 2376)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star17"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star17"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star17"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star17"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star17/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star17"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star17" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star18" type="Area2D" parent="Stars"]
+position = Vector2(2312, 1680)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star18"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star18"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star18"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star18"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star18/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star18"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star18" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star19" type="Area2D" parent="Stars"]
+position = Vector2(-68, 3312)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star19"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star19"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star19"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star19"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star19/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star19"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star19" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star20" type="Area2D" parent="Stars"]
+position = Vector2(1760, -2528)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star20"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star20"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star20"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star20"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star20/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star20"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star20" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star21" type="Area2D" parent="Stars"]
+position = Vector2(-2328, -3168)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star21"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star21"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star21"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star21"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star21/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star21"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star21" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star22" type="Area2D" parent="Stars"]
+position = Vector2(-812, -4568)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star22"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star22"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star22"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star22"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star22/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star22"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star22" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star23" type="Area2D" parent="Stars"]
+position = Vector2(1708, -4964)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star23"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star23"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star23"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star23"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star23/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star23"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star23" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star24" type="Area2D" parent="Stars"]
+position = Vector2(3512, -2796)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star24"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star24"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star24"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star24"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star24/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star24"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star24" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star25" type="Area2D" parent="Stars"]
+position = Vector2(4012, -704)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star25"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star25"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star25"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star25"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star25/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star25"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star25" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star26" type="Area2D" parent="Stars"]
+position = Vector2(4368, 1316)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star26"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star26"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star26"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star26"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star26/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star26"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star26" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star27" type="Area2D" parent="Stars"]
+position = Vector2(2920, 3512)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star27"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star27"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star27"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star27"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star27/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star27"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star27" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star28" type="Area2D" parent="Stars"]
+position = Vector2(-1828, 4388)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star28"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star28"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star28"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star28"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star28/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star28"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star28" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star29" type="Area2D" parent="Stars"]
+position = Vector2(-4316, 2228)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star29"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star29"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star29"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star29"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star29/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star29"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star29" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star30" type="Area2D" parent="Stars"]
+position = Vector2(-4736, -1036)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star30"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star30"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star30"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star30"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star30/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star30"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star30" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star31" type="Area2D" parent="Stars"]
+position = Vector2(-3708, -3524)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star31"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star31"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star31"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star31"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star31/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star31"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star31" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star32" type="Area2D" parent="Stars"]
+position = Vector2(-2952, -5972)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star32"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star32"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star32"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star32"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star32/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star32"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star32" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star33" type="Area2D" parent="Stars"]
+position = Vector2(-7696, -3616)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star33"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star33"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star33"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star33"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star33/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star33"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star33" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star34" type="Area2D" parent="Stars"]
+position = Vector2(-8088, 1640)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star34"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star34"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star34"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star34"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star34/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star34"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star34" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star35" type="Area2D" parent="Stars"]
+position = Vector2(-6608, 5384)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star35"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star35"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star35"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star35"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star35/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star35"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star35" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star36" type="Area2D" parent="Stars"]
+position = Vector2(-960, 7620)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star36"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star36"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star36"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star36"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star36/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star36"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star36" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star37" type="Area2D" parent="Stars"]
+position = Vector2(3600, 6352)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star37"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star37"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star37"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star37"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star37/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star37"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star37" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star38" type="Area2D" parent="Stars"]
+position = Vector2(7616, 2728)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star38"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star38"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star38"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star38"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star38/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star38"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star38" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star39" type="Area2D" parent="Stars"]
+position = Vector2(7920, -3224)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star39"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star39"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star39"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star39"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star39/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star39"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star39" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star40" type="Area2D" parent="Stars"]
+position = Vector2(3844, -6968)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star40"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star40"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star40"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star40"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star40/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star40"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star40" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star41" type="Area2D" parent="Stars"]
+position = Vector2(-596, -9536)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star41"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star41"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star41"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star41"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star41/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star41"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star41" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star42" type="Area2D" parent="Stars"]
+position = Vector2(-7344, -9580)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star42"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star42"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star42"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star42"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star42/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star42"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star42" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star43" type="Area2D" parent="Stars"]
+position = Vector2(-14392, -2704)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star43"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star43"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star43"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star43"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star43/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star43"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star43" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star44" type="Area2D" parent="Stars"]
+position = Vector2(-12340, 6736)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star44"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star44"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star44"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star44"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star44/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star44"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star44" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star45" type="Area2D" parent="Stars"]
+position = Vector2(-13580, 2680)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star45"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star45"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star45"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star45"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star45/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star45"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star45" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star46" type="Area2D" parent="Stars"]
+position = Vector2(-12256, -9452)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star46"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star46"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star46"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star46"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star46/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star46"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star46" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star47" type="Area2D" parent="Stars"]
+position = Vector2(-2132, -13808)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star47"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star47"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star47"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star47"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star47/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star47"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star47" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star48" type="Area2D" parent="Stars"]
+position = Vector2(4188, -15260)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star48"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star48"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star48"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star48"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star48/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star48"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star48" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star49" type="Area2D" parent="Stars"]
+position = Vector2(6240, -11544)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star49"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star49"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star49"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star49"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star49/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star49"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star49" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star50" type="Area2D" parent="Stars"]
+position = Vector2(9188, -8384)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star50"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star50"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star50"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star50"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star50/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star50"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star50" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star51" type="Area2D" parent="Stars"]
+position = Vector2(11792, -12956)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star51"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star51"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star51"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star51"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star51/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star51"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star51" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star52" type="Area2D" parent="Stars"]
+position = Vector2(13372, -4500)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star52"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star52"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star52"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star52"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star52/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star52"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star52" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star53" type="Area2D" parent="Stars"]
+position = Vector2(11364, -356)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star53"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star53"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star53"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star53"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star53/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star53"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star53" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star54" type="Area2D" parent="Stars"]
+position = Vector2(11408, 7160)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star54"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star54"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star54"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star54"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star54/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star54"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star54" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star55" type="Area2D" parent="Stars"]
+position = Vector2(6964, 8484)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star55"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star55"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star55"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star55"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star55/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star55"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star55" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star56" type="Area2D" parent="Stars"]
+position = Vector2(4188, 13780)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star56"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star56"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star56"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star56"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star56/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star56"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star56" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star57" type="Area2D" parent="Stars"]
+position = Vector2(1240, 10192)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star57"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star57"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star57"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star57"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star57/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star57"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star57" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star58" type="Area2D" parent="Stars"]
+position = Vector2(-3372, 13480)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star58"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star58"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star58"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star58"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star58/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star58"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star58" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star59" type="Area2D" parent="Stars"]
+position = Vector2(-5704, 8756)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star59"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star59"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star59"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star59"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star59/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star59"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star59" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Star60" type="Area2D" parent="Stars"]
+position = Vector2(-316, -2852)
+script = ExtResource("2_63fin")
+
+[node name="Death" type="CollisionShape2D" parent="Stars/Star60"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Stars/Star60"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Stars/Star60"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Stars/Star60"]
+material = SubResource("ShaderMaterial_7mjy8")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Light" type="PointLight2D" parent="Stars/Star60/Sprite"]
+color = Color(1, 1, 0.823529, 1)
+texture = ExtResource("6_isp01")
+
+[node name="Remote" type="Node2D" parent="Stars/Star60"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Stars/Star60" instance=ExtResource("8_yw3hx")]
+texture = ExtResource("9_hetwy")
+
+[node name="Planets" type="Node2D" parent="."]
+
+[node name="Crocodile Planet" type="Area2D" parent="Planets"]
+position = Vector2(-2468, -4592)
+script = ExtResource("2_63fin")
+isHot = false
+
+[node name="Death" type="CollisionShape2D" parent="Planets/Crocodile Planet"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Planets/Crocodile Planet"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Planets/Crocodile Planet"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Planets/Crocodile Planet"]
+material = SubResource("ShaderMaterial_gulnq")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Remote" type="Node2D" parent="Planets/Crocodile Planet"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Planets/Crocodile Planet" instance=ExtResource("8_yw3hx")]
+texture = SubResource("GradientTexture2D_bumkd")
+
+[node name="Penguin Planet" type="Area2D" parent="Planets"]
+position = Vector2(12568, 3432)
+script = ExtResource("2_63fin")
+isHot = false
+
+[node name="Death" type="CollisionShape2D" parent="Planets/Penguin Planet"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Planets/Penguin Planet"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Planets/Penguin Planet"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Planets/Penguin Planet"]
+material = SubResource("ShaderMaterial_gulnq")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Remote" type="Node2D" parent="Planets/Penguin Planet"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Planets/Penguin Planet" instance=ExtResource("8_yw3hx")]
+texture = SubResource("GradientTexture2D_bumkd")
+
+[node name="Goat Planet" type="Area2D" parent="Planets"]
+position = Vector2(6360, -5700)
+script = ExtResource("2_63fin")
+isHot = false
+
+[node name="Death" type="CollisionShape2D" parent="Planets/Goat Planet"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Planets/Goat Planet"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Planets/Goat Planet"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Planets/Goat Planet"]
+material = SubResource("ShaderMaterial_gulnq")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Remote" type="Node2D" parent="Planets/Goat Planet"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Planets/Goat Planet" instance=ExtResource("8_yw3hx")]
+texture = SubResource("GradientTexture2D_bumkd")
+
+[node name="Train Planet" type="Area2D" parent="Planets"]
+position = Vector2(-9368, 5288)
+script = ExtResource("2_63fin")
+isHot = false
+
+[node name="Death" type="CollisionShape2D" parent="Planets/Train Planet"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Planets/Train Planet"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Planets/Train Planet"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Planets/Train Planet"]
+material = SubResource("ShaderMaterial_gulnq")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Remote" type="Node2D" parent="Planets/Train Planet"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Planets/Train Planet" instance=ExtResource("8_yw3hx")]
+texture = SubResource("GradientTexture2D_bumkd")
+
+[node name="Squid Planet" type="Area2D" parent="Planets"]
+position = Vector2(1292, 5148)
+script = ExtResource("2_63fin")
+isHot = false
+
+[node name="Death" type="CollisionShape2D" parent="Planets/Squid Planet"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Planets/Squid Planet"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Planets/Squid Planet"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Planets/Squid Planet"]
+material = SubResource("ShaderMaterial_gulnq")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Remote" type="Node2D" parent="Planets/Squid Planet"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Planets/Squid Planet" instance=ExtResource("8_yw3hx")]
+texture = SubResource("GradientTexture2D_bumkd")
+
+[node name="Fish Planet" type="Area2D" parent="Planets"]
+position = Vector2(-11380, -4336)
+script = ExtResource("2_63fin")
+isHot = false
+
+[node name="Death" type="CollisionShape2D" parent="Planets/Fish Planet"]
+shape = SubResource("CircleShape2D_dods4")
+debug_color = Color(0.976471, 0, 0.407843, 0.419608)
+
+[node name="Gravity" type="Node2D" parent="Planets/Fish Planet"]
+script = ExtResource("1_vsxqb")
+
+[node name="GravityOutline" type="Sprite2D" parent="Planets/Fish Planet"]
+material = SubResource("ShaderMaterial_hjxc6")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_u4h5j")
+script = ExtResource("6_0ffas")
+
+[node name="Sprite" type="Sprite2D" parent="Planets/Fish Planet"]
+material = SubResource("ShaderMaterial_gulnq")
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_2xoh2")
+
+[node name="Remote" type="Node2D" parent="Planets/Fish Planet"]
+scale = Vector2(1, 0.999985)
+script = ExtResource("2_v7mfs")
+updateRotation = false
+scaled = 0.25
+
+[node name="AppearsOnMap" parent="Planets/Fish Planet" instance=ExtResource("8_yw3hx")]
+texture = SubResource("GradientTexture2D_bumkd")
