@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://2lifl5c0bvhp"]
+[gd_scene load_steps=79 format=3 uid="uid://2lifl5c0bvhp"]
 
 [ext_resource type="Script" path="res://Scripts/Game/GravityMan.gd" id="1_3uasn"]
 [ext_resource type="Script" path="res://Scripts/Game/Gravity.gd" id="1_vsxqb"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://c6g0als085y6b" path="res://Resources/MapIcons/Star.tres" id="9_hetwy"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/celestial_body.gdshader" id="10_xexd8"]
 [ext_resource type="Texture2D" uid="uid://bm0s4tupn6dm2" path="res://Assets/Art/UI/minimap.png" id="11_3ogp3"]
+[ext_resource type="Texture2D" uid="uid://cri1wy863qt3o" path="res://Assets/Art/Objects/station.png" id="11_faxxl"]
 [ext_resource type="Texture2D" uid="uid://l6qeth4dc3ri" path="res://Assets/Art/Objects/uvship.png" id="11_lni28"]
 [ext_resource type="Theme" uid="uid://6cgu0y46o3ww" path="res://Resources/Themes/HUD.tres" id="11_yrm1c"]
 [ext_resource type="Script" path="res://Scripts/Game/Background.gd" id="11_ywbsh"]
@@ -67,6 +68,21 @@ point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_ps3ww"]
 offsets = PackedFloat32Array(0.719626, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_evmbg"]
+offsets = PackedFloat32Array(0.105634, 0.193939, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_owcny"]
+gradient = SubResource("Gradient_evmbg")
+width = 12
+height = 12
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_r5wqv"]
+offsets = PackedFloat32Array(0.907514, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="Gradient" id="Gradient_p568u"]
@@ -300,21 +316,36 @@ linear_accel_max = -5.0
 scale_amount_curve = SubResource("Curve_sn2ug")
 color_ramp = SubResource("Gradient_ps3ww")
 
-[node name="Brakes" type="CPUParticles2D" parent="Player/PlayerSprite"]
+[node name="Drift" type="CPUParticles2D" parent="Player/PlayerSprite"]
 z_index = -1
-position = Vector2(0, 8)
+position = Vector2(-9, 5)
 emitting = false
-amount = 25
-lifetime = 2.0
-texture = SubResource("GradientTexture2D_k7uod")
-direction = Vector2(0, 1)
+amount = 5
+lifetime = 0.5
+texture = SubResource("GradientTexture2D_owcny")
+direction = Vector2(-1, 0)
 gravity = Vector2(0, 0)
 initial_velocity_min = 10.0
 initial_velocity_max = 10.0
 linear_accel_min = -5.0
 linear_accel_max = -5.0
 scale_amount_curve = SubResource("Curve_sn2ug")
-color_ramp = SubResource("Gradient_ps3ww")
+color_ramp = SubResource("Gradient_r5wqv")
+
+[node name="Drift2" type="CPUParticles2D" parent="Player/PlayerSprite"]
+z_index = -1
+position = Vector2(9, 5)
+emitting = false
+amount = 5
+lifetime = 0.5
+texture = SubResource("GradientTexture2D_owcny")
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+linear_accel_min = -5.0
+linear_accel_max = -5.0
+scale_amount_curve = SubResource("Curve_sn2ug")
+color_ramp = SubResource("Gradient_r5wqv")
 
 [node name="Fire" type="CPUParticles2D" parent="Player/PlayerSprite"]
 position = Vector2(0, 6)
@@ -360,6 +391,9 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(256, 192)
 render_target_update_mode = 4
 script = ExtResource("7_xdvmi")
+
+[node name="Station" type="Sprite2D" parent="SubView"]
+texture = ExtResource("11_faxxl")
 
 [node name="BackgroundMan" type="Node2D" parent="SubView" node_paths=PackedStringArray("cam")]
 script = ExtResource("11_ywbsh")

@@ -23,6 +23,8 @@ var smoke: CPUParticles2D
 var fire: CPUParticles2D
 var brake1: Sprite2D
 var brake2: Sprite2D
+var driftSparks: CPUParticles2D
+var driftSparks2: CPUParticles2D
 
 var heat = 0
 
@@ -33,6 +35,8 @@ func _ready():
 	playerSprite = $PlayerSprite 
 	smoke = $PlayerSprite/Smoke
 	fire = $PlayerSprite/Fire
+	driftSparks = $PlayerSprite/Drift
+	driftSparks2 = $PlayerSprite/Drift2
 	brake1 = $PlayerSprite/Brake1
 	brake2 = $PlayerSprite/Brake2
 	playerSprite.scale = Vector2.ONE
@@ -115,10 +119,14 @@ func _physics_process(_dt):
 			if noise2Tween: noise2Tween.kill()
 			noise2Tween = create_tween()
 			noise2Tween.tween_property($DriftNoise, "volume_db", 0.0, 0.05)
+			driftSparks.emitting = true
+			driftSparks2.emitting = true
 		else:
 			if noise2Tween: noise2Tween.kill()
 			noise2Tween = create_tween()
 			noise2Tween.tween_property($DriftNoise, "volume_db", -80.0, 0.05)
+			driftSparks.emitting = false
+			driftSparks2.emitting = false
 
 	velocity += GetGravity(global_position)
 

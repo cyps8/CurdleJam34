@@ -44,7 +44,7 @@ func TakePizza() -> Stage:
 
 func SetHot(hot: bool):
 	$Hot.visible = hot
-	if isHot != hot:
+	if isHot != hot && hasPizza:
 		if hot:
 			if noiseTween: noiseTween.kill()
 			noiseTween = create_tween()
